@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35312.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bulk Data Transporter", "Bulk Data Transporter\Bulk Data Transporter.csproj", "{1CB7EF9B-B7DC-4E6A-8F2F-F97C448B9CD3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repository Items", "Repository Items", "{359E76BD-8ED2-4B9C-9DD9-72ADAFCC30AF}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+		ToDo.md = ToDo.md
+	EndProjectSection
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "XTB Components", "XTB Components\XTB Components.shproj", "{FA24C448-17A0-4CD6-BFAD-DA2202F2056E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1CB7EF9B-B7DC-4E6A-8F2F-F97C448B9CD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CB7EF9B-B7DC-4E6A-8F2F-F97C448B9CD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CB7EF9B-B7DC-4E6A-8F2F-F97C448B9CD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CB7EF9B-B7DC-4E6A-8F2F-F97C448B9CD3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {26551FF2-AC63-4F5A-AEF2-199E8DA28BBA}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		XTB Components\XTB Components.projitems*{1cb7ef9b-b7dc-4e6a-8f2f-f97c448b9cd3}*SharedItemsImports = 4
+		XTB Components\XTB Components.projitems*{fa24c448-17a0-4cd6-bfad-da2202f2056e}*SharedItemsImports = 13
+	EndGlobalSection
+EndGlobal

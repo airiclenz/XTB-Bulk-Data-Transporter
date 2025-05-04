@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <!-- Required elements-->
+        <id>Com.AiricLenz.XTB.Plugin.BulkDataTransporter</id>
+		<title>Bulk Data Transporter</title>
+        <version>2025.5.2.0</version>
+        <authors>Airic Lenz</authors>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>
+			A Bulk-Data-Transporter tool for defining data migration jobs from one to multiple target environments.
+		</description>
+		<summary>
+			A tool for defining data migration jobs from one to multiple target environments.
+		</summary>
+		<releaseNotes>Release notes can be found here: https://github.com/airiclenz/XTB-Data-Transporter/releases</releaseNotes>
+
+        <!-- Optional elements -->
+		<projectUrl>https://github.com/airiclenz/XTB-Bulk-Data-Transporter</projectUrl>
+		<iconUrl>https://raw.githubusercontent.com/airiclenz/XTB-Bulk-Solution-Exporter/refs/heads/master/Images/bulk%20solution%20exporter.150px.png</iconUrl>
+		<tags>XrmToolBox Plugins Data Migration BulkDataTransporter</tags>
+		<dependencies>
+			<dependency id="XrmToolBox" version="1.2023.10.67" />
+		</dependencies>
+    </metadata>
+	<files>
+		<file src="bin\Release\Com.AiricLenz.XTB.Plugin.BulkDataTransporter.dll" target="lib\net48\Plugins" />
+		<file src="..\Images\bulk solution exporter.80px.png" target="images\icon.png" />
+	</files>
+</package>
