@@ -57,9 +57,10 @@ namespace Com.AiricLenz.XTB.Plugin
 		private const string ColorConnection = "<color=#337799>";
 		private const string ColorTeeth = "<color=#CCCCCE>";
 		private const string ColorEndTag = "</color>";
-
+		
 		private const string dateTimeFormat = "yyyy-MM-dd HH:mm:ss";
 
+		private bool isSearchEmpty = true;
 
 		// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 		public List<ConnectionDetail> TargetConnections
@@ -705,11 +706,58 @@ namespace Com.AiricLenz.XTB.Plugin
 		}
 
 
+		// ============================================================================
+		private void toolStrip_searchBox_Enter(object sender, EventArgs e)
+		{
+			if (isSearchEmpty)
+			{
+				toolStrip_searchBox.Text = "";
+				toolStrip_searchBox.ForeColor = Color.Black;
+				toolStrip_searchBox.Font =
+					new Font(
+						toolStrip_searchBox.Font,
+						FontStyle.Regular);
+			}
+		}
+
+		// ============================================================================
+		private void toolStrip_searchBox_TextChanged(object sender, EventArgs e)
+		{
+			if (isSearchEmpty)
+			{
+				return;
+			}
+
+			listBoxTables.Filter
+		}
+
+		// ============================================================================
+		private void toolStrip_searchBox_Leave(object sender, EventArgs e)
+		{
+			isSearchEmpty = toolStrip_searchBox.Text.IsEmpty();
+
+			if (isSearchEmpty)
+			{
+				toolStrip_searchBox.Text = "Search";
+				toolStrip_searchBox.ForeColor = Color.Gray;
+				toolStrip_searchBox.Font =
+					new Font(
+						toolStrip_searchBox.Font,
+						FontStyle.Italic);
+			}
+			else
+			{
+				toolStrip_searchBox.ForeColor = Color.Black;
+			}
+		}
+
+
+
+
+
 		#endregion
 
-
-
-
+		
 	}
 
 

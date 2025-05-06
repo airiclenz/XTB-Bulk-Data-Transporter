@@ -48,16 +48,18 @@ namespace Com.AiricLenz.XTB.Plugin
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panelSeparator = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStrip_searchBox = new System.Windows.Forms.ToolStripTextBox();
+            this.listBoxTables = new Com.AiricLenz.XTB.Components.SortableCheckList();
             this.panel1 = new System.Windows.Forms.Panel();
             this.richTextBox_log = new System.Windows.Forms.RichTextBox();
             this.label_Log = new System.Windows.Forms.Label();
-            this.listBoxTables = new Com.AiricLenz.XTB.Components.SortableCheckList();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.toolStripMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -204,11 +206,59 @@ namespace Com.AiricLenz.XTB.Plugin
             // 
             // toolStrip1
             // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStrip_searchBox});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(650, 25);
             this.toolStrip1.TabIndex = 8;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStrip_searchBox
+            // 
+            this.toolStrip_searchBox.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStrip_searchBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStrip_searchBox.ForeColor = System.Drawing.Color.Gray;
+            this.toolStrip_searchBox.Name = "toolStrip_searchBox";
+            this.toolStrip_searchBox.Size = new System.Drawing.Size(200, 25);
+            this.toolStrip_searchBox.Text = "Search";
+            this.toolStrip_searchBox.Enter += new System.EventHandler(this.toolStrip_searchBox_Enter);
+            this.toolStrip_searchBox.Leave += new System.EventHandler(this.toolStrip_searchBox_Leave);
+            this.toolStrip_searchBox.TextChanged += new System.EventHandler(this.toolStrip_searchBox_TextChanged);
+            // 
+            // listBoxTables
+            // 
+            this.listBoxTables.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBoxTables.BackColor = System.Drawing.SystemColors.Window;
+            this.listBoxTables.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("listBoxTables.BackgroundImage")));
+            this.listBoxTables.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.listBoxTables.BorderColor = System.Drawing.SystemColors.ControlDark;
+            this.listBoxTables.BorderThickness = 1F;
+            this.listBoxTables.CheckBoxMargin = 4;
+            this.listBoxTables.CheckBoxRadius = 18;
+            this.listBoxTables.CheckBoxSize = 18;
+            this.listBoxTables.ColorChecked = System.Drawing.Color.MediumSlateBlue;
+            this.listBoxTables.ColorUnchecked = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.listBoxTables.ColumnsJson = "[]";
+            this.listBoxTables.DragBurgerLineThickness = 1.5F;
+            this.listBoxTables.DragBurgerSize = 11;
+            this.listBoxTables.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxTables.IsCheckable = false;
+            this.listBoxTables.IsSortable = true;
+            this.listBoxTables.ItemHeigth = 24;
+            this.listBoxTables.Location = new System.Drawing.Point(3, 35);
+            this.listBoxTables.Name = "listBoxTables";
+            this.listBoxTables.ShowScrollBar = true;
+            this.listBoxTables.ShowTooltips = true;
+            this.listBoxTables.Size = new System.Drawing.Size(644, 712);
+            this.listBoxTables.SortingColumnIndex = -1;
+            this.listBoxTables.SortingColumnOrder = System.Windows.Forms.SortOrder.None;
+            this.listBoxTables.TabIndex = 7;
+            this.listBoxTables.Text = "sortableCheckList1";
+            this.listBoxTables.SelectedIndexChanged += new System.EventHandler(this.listTables_SelectedIndexChanged);
+            this.listBoxTables.ItemChecked += new System.EventHandler(this.listboxTables_ItemCheck);
             // 
             // panel1
             // 
@@ -245,40 +295,6 @@ namespace Com.AiricLenz.XTB.Plugin
             this.label_Log.TabIndex = 7;
             this.label_Log.Text = "Log";
             // 
-            // listBoxTables
-            // 
-            this.listBoxTables.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBoxTables.BackColor = System.Drawing.SystemColors.Window;
-            this.listBoxTables.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("listBoxTables.BackgroundImage")));
-            this.listBoxTables.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.listBoxTables.BorderColor = System.Drawing.SystemColors.ControlDark;
-            this.listBoxTables.BorderThickness = 1F;
-            this.listBoxTables.CheckBoxMargin = 4;
-            this.listBoxTables.CheckBoxRadius = 18;
-            this.listBoxTables.CheckBoxSize = 18;
-            this.listBoxTables.ColorChecked = System.Drawing.Color.MediumSlateBlue;
-            this.listBoxTables.ColorUnchecked = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.listBoxTables.ColumnsJson = "[]";
-            this.listBoxTables.DragBurgerLineThickness = 1.5F;
-            this.listBoxTables.DragBurgerSize = 11;
-            this.listBoxTables.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBoxTables.IsCheckable = false;
-            this.listBoxTables.IsSortable = true;
-            this.listBoxTables.ItemHeigth = 24;
-            this.listBoxTables.Location = new System.Drawing.Point(3, 35);
-            this.listBoxTables.Name = "listBoxTables";
-            this.listBoxTables.ShowScrollBar = true;
-            this.listBoxTables.ShowTooltips = true;
-            this.listBoxTables.Size = new System.Drawing.Size(644, 712);
-            this.listBoxTables.SortingColumnIndex = -1;
-            this.listBoxTables.SortingColumnOrder = System.Windows.Forms.SortOrder.None;
-            this.listBoxTables.TabIndex = 7;
-            this.listBoxTables.Text = "sortableCheckList1";
-            this.listBoxTables.SelectedIndexChanged += new System.EventHandler(this.listTables_SelectedIndexChanged);
-            this.listBoxTables.ItemChecked += new System.EventHandler(this.listboxTables_ItemCheck);
-            // 
             // BulkDataTransporter_PluginControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -298,6 +314,8 @@ namespace Com.AiricLenz.XTB.Plugin
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -323,5 +341,6 @@ namespace Com.AiricLenz.XTB.Plugin
 		private System.Windows.Forms.ToolStripButton button_manageConnections;
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.RichTextBox richTextBox_log;
+		private System.Windows.Forms.ToolStripTextBox toolStrip_searchBox;
 	}
 }
