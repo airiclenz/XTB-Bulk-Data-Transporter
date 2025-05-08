@@ -2,23 +2,17 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.ServiceModel;
-using System.Web.Services.Description;
 using System.Windows.Forms;
 using Com.AiricLenz.Extentions;
 using Com.AiricLenz.XTB.Components;
 using Com.AiricLenz.XTB.Plugin.Helpers;
 using McTools.Xrm.Connection;
-using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Metadata;
-using Microsoft.Xrm.Sdk.Query;
 using Microsoft.Xrm.Tooling.Connector;
-using Newtonsoft.Json;
 using XrmToolBox.Extensibility;
 
 
@@ -42,9 +36,10 @@ namespace Com.AiricLenz.XTB.Plugin
 		private bool _codeUpdate = false;
 		private bool _codeUpdateSplitter = false;
 		private Guid _currentConnectionGuid;
-		
+
 		private ConnectionManager _connectionManager = null;
 		private Logger _logger = null;
+		private bool _isSearchEmpty = true;
 
 		private object origin;
 		private object target;
@@ -57,10 +52,9 @@ namespace Com.AiricLenz.XTB.Plugin
 		private const string ColorConnection = "<color=#337799>";
 		private const string ColorTeeth = "<color=#CCCCCE>";
 		private const string ColorEndTag = "</color>";
-		
+
 		private const string dateTimeFormat = "yyyy-MM-dd HH:mm:ss";
 
-		private bool isSearchEmpty = true;
 
 		// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 		public List<ConnectionDetail> TargetConnections
@@ -82,7 +76,6 @@ namespace Com.AiricLenz.XTB.Plugin
 			set
 			{
 				_codeUpdate = value;
-				//LogDebug($"CodeUpdate = {_codeUpdate}");
 			}
 		}
 
@@ -97,7 +90,6 @@ namespace Com.AiricLenz.XTB.Plugin
 			set
 			{
 				_codeUpdateSplitter = value;
-				//LogDebug($"CodeUpdateSplitter = {_codeUpdateSplitter}");
 			}
 		}
 
@@ -157,8 +149,8 @@ namespace Com.AiricLenz.XTB.Plugin
 
 			button_loadMetadata.Enabled = Service != null;
 			button_manageConnections.Visible = TargetConnections?.Count > 0;
-			
-			
+
+
 			UpdateAllConnectionTimeouts();
 			LoadMetadata();
 		}
@@ -278,7 +270,7 @@ namespace Com.AiricLenz.XTB.Plugin
 		{
 			button_manageConnections.Visible = TargetConnections?.Count > 0;
 
-			
+
 			LoadMetadata();
 
 			_connectionManager?.UpdateConnections();
@@ -324,7 +316,7 @@ namespace Com.AiricLenz.XTB.Plugin
 		// ============================================================================
 		private void listTables_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			
+
 		}
 
 
@@ -332,13 +324,13 @@ namespace Com.AiricLenz.XTB.Plugin
 		// ============================================================================
 		private void listboxTables_ItemOrderChanged(object sender, EventArgs e)
 		{
-			
+
 		}
 
 		// ============================================================================
 		private void button_Export_Click(object sender, EventArgs e)
 		{
-			
+
 		}
 
 
@@ -439,7 +431,7 @@ namespace Com.AiricLenz.XTB.Plugin
 
 			WorkAsync(new WorkAsyncInfo
 			{
-				Message = "**Getting All Solutions**",
+				Message = "Loading Metadata...",
 				Work = (worker, args) =>
 				{
 					// LOAD ALL TABLES
@@ -475,7 +467,7 @@ namespace Com.AiricLenz.XTB.Plugin
 
 					foreach (var entityMetadata in result.EntityMetadata)
 					{
-						var newItem = 
+						var newItem =
 							new SortableCheckItem(
 								entityMetadata);
 
@@ -486,6 +478,7 @@ namespace Com.AiricLenz.XTB.Plugin
 
 					UpdateColumns();
 					SetExecuteButtonState();
+					listBoxTables.Filter = null;
 				}
 			});
 
@@ -640,7 +633,7 @@ namespace Com.AiricLenz.XTB.Plugin
 					IsSortable = true,
 				};
 
-			
+
 
 			CodeUpdate = true;
 
@@ -709,9 +702,12 @@ namespace Com.AiricLenz.XTB.Plugin
 		// ============================================================================
 		private void toolStrip_searchBox_Enter(object sender, EventArgs e)
 		{
-			if (isSearchEmpty)
+			if (_isSearchEmpty)
 			{
+				CodeUpdate = true;
 				toolStrip_searchBox.Text = "";
+				CodeUpdate = false;
+
 				toolStrip_searchBox.ForeColor = Color.Black;
 				toolStrip_searchBox.Font =
 					new Font(
@@ -720,25 +716,47 @@ namespace Com.AiricLenz.XTB.Plugin
 			}
 		}
 
+
 		// ============================================================================
 		private void toolStrip_searchBox_TextChanged(object sender, EventArgs e)
 		{
-			if (isSearchEmpty)
+			if (CodeUpdate)
 			{
 				return;
 			}
 
-			listBoxTables.Filter
+			_isSearchEmpty = string.IsNullOrWhiteSpace(toolStrip_searchBox.Text);
+			toolStrip_buttonClearFilter.Visible = !_isSearchEmpty;
+
+			if (_isSearchEmpty)
+			{
+				listBoxTables.Filter = null;
+				return;
+			}
+
+			var filter =
+				new SortableCheckListFilter(
+					"LogicalName",
+					toolStrip_searchBox.Text,
+					ConditionOperator.Contains);
+
+			listBoxTables.Filter = filter;
+
 		}
+
 
 		// ============================================================================
 		private void toolStrip_searchBox_Leave(object sender, EventArgs e)
 		{
-			isSearchEmpty = toolStrip_searchBox.Text.IsEmpty();
+			_isSearchEmpty = string.IsNullOrWhiteSpace(toolStrip_searchBox.Text);
+			toolStrip_buttonClearFilter.Visible = !_isSearchEmpty;
 
-			if (isSearchEmpty)
+			if (_isSearchEmpty)
 			{
+				CodeUpdate = true;
 				toolStrip_searchBox.Text = "Search";
+				CodeUpdate = false;
+
 				toolStrip_searchBox.ForeColor = Color.Gray;
 				toolStrip_searchBox.Font =
 					new Font(
@@ -753,11 +771,8 @@ namespace Com.AiricLenz.XTB.Plugin
 
 
 
-
-
 		#endregion
 
-		
 	}
 
 

@@ -53,6 +53,7 @@ namespace Com.AiricLenz.XTB.Plugin
             this.panel1 = new System.Windows.Forms.Panel();
             this.richTextBox_log = new System.Windows.Forms.RichTextBox();
             this.label_Log = new System.Windows.Forms.Label();
+            this.toolStrip_buttonClearFilter = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.toolStripMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -207,7 +208,8 @@ namespace Com.AiricLenz.XTB.Plugin
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStrip_searchBox});
+            this.toolStrip_searchBox,
+            this.toolStrip_buttonClearFilter});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(650, 25);
@@ -220,7 +222,7 @@ namespace Com.AiricLenz.XTB.Plugin
             this.toolStrip_searchBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStrip_searchBox.ForeColor = System.Drawing.Color.Gray;
             this.toolStrip_searchBox.Name = "toolStrip_searchBox";
-            this.toolStrip_searchBox.Size = new System.Drawing.Size(200, 25);
+            this.toolStrip_searchBox.Size = new System.Drawing.Size(250, 25);
             this.toolStrip_searchBox.Text = "Search";
             this.toolStrip_searchBox.Enter += new System.EventHandler(this.toolStrip_searchBox_Enter);
             this.toolStrip_searchBox.Leave += new System.EventHandler(this.toolStrip_searchBox_Leave);
@@ -244,6 +246,7 @@ namespace Com.AiricLenz.XTB.Plugin
             this.listBoxTables.ColumnsJson = "[]";
             this.listBoxTables.DragBurgerLineThickness = 1.5F;
             this.listBoxTables.DragBurgerSize = 11;
+            this.listBoxTables.Filter = null;
             this.listBoxTables.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxTables.IsCheckable = false;
             this.listBoxTables.IsSortable = true;
@@ -295,6 +298,16 @@ namespace Com.AiricLenz.XTB.Plugin
             this.label_Log.TabIndex = 7;
             this.label_Log.Text = "Log";
             // 
+            // toolStrip_buttonClearFilter
+            // 
+            this.toolStrip_buttonClearFilter.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStrip_buttonClearFilter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStrip_buttonClearFilter.Image = global::Com.AiricLenz.XTB.Plugin.Properties.Resources.delete_32px;
+            this.toolStrip_buttonClearFilter.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStrip_buttonClearFilter.Name = "toolStrip_buttonClearFilter";
+            this.toolStrip_buttonClearFilter.Size = new System.Drawing.Size(23, 22);
+            this.toolStrip_buttonClearFilter.Text = "toolStripButton1";
+            // 
             // BulkDataTransporter_PluginControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -342,5 +355,6 @@ namespace Com.AiricLenz.XTB.Plugin
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.RichTextBox richTextBox_log;
 		private System.Windows.Forms.ToolStripTextBox toolStrip_searchBox;
+		private System.Windows.Forms.ToolStripButton toolStrip_buttonClearFilter;
 	}
 }
