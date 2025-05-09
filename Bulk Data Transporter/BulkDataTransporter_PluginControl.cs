@@ -28,6 +28,9 @@ namespace Com.AiricLenz.XTB.Plugin
 	public partial class BulkDataTransporter_PluginControl : MultipleConnectionsPluginControlBase
 	{
 
+		// ##################################################
+		// ##################################################
+		
 		#region Variables and Properties
 
 		private bool isDebugMode = false;
@@ -39,7 +42,8 @@ namespace Com.AiricLenz.XTB.Plugin
 
 		private ConnectionManager _connectionManager = null;
 		private Logger _logger = null;
-		private bool _isSearchEmpty = true;
+		private bool _isSearchTablesEmpty = true;
+		private bool _isSearchAttributesEmpty = true;
 
 		private object origin;
 		private object target;
@@ -96,9 +100,10 @@ namespace Com.AiricLenz.XTB.Plugin
 
 		#endregion
 
-		// ##################################################
-		// ##################################################
 
+		// ##################################################
+		// ##################################################
+		
 		#region Plugin Events
 
 
@@ -394,35 +399,35 @@ namespace Com.AiricLenz.XTB.Plugin
 
 
 		// ============================================================================
-		private void toolStrip_searchBox_Enter(object sender, EventArgs e)
+		private void toolStripTables_searchBox_Enter(object sender, EventArgs e)
 		{
-			if (_isSearchEmpty)
+			if (_isSearchTablesEmpty)
 			{
 				CodeUpdate = true;
-				toolStrip_searchBox.Text = "";
+				toolStripTables_SearchBox.Text = "";
 				CodeUpdate = false;
 
-				toolStrip_searchBox.ForeColor = Color.Black;
-				toolStrip_searchBox.Font =
+				toolStripTables_SearchBox.ForeColor = Color.Black;
+				toolStripTables_SearchBox.Font =
 					new Font(
-						toolStrip_searchBox.Font,
+						toolStripTables_SearchBox.Font,
 						FontStyle.Regular);
 			}
 		}
 
 
 		// ============================================================================
-		private void toolStrip_searchBox_TextChanged(object sender, EventArgs e)
+		private void toolStripTables_searchBox_TextChanged(object sender, EventArgs e)
 		{
 			if (CodeUpdate)
 			{
 				return;
 			}
 
-			_isSearchEmpty = string.IsNullOrWhiteSpace(toolStrip_searchBox.Text);
-			toolStrip_buttonClearFilter.Visible = !_isSearchEmpty;
+			_isSearchTablesEmpty = string.IsNullOrWhiteSpace(toolStripTables_SearchBox.Text);
+			toolStripTables_buttonClearFilter.Visible = !_isSearchTablesEmpty;
 
-			if (_isSearchEmpty)
+			if (_isSearchTablesEmpty)
 			{
 				listBoxTables.Filter = null;
 				return;
@@ -431,7 +436,7 @@ namespace Com.AiricLenz.XTB.Plugin
 			var filter =
 				new SortableCheckListFilter(
 					"LogicalName",
-					toolStrip_searchBox.Text,
+					toolStripTables_SearchBox.Text,
 					ConditionOperator.Contains);
 
 			listBoxTables.Filter = filter;
@@ -440,47 +445,141 @@ namespace Com.AiricLenz.XTB.Plugin
 
 
 		// ============================================================================
-		private void toolStrip_searchBox_Leave(object sender, EventArgs e)
+		private void toolStripTables_searchBox_Leave(object sender, EventArgs e)
 		{
-			_isSearchEmpty = string.IsNullOrWhiteSpace(toolStrip_searchBox.Text);
-			toolStrip_buttonClearFilter.Visible = !_isSearchEmpty;
+			_isSearchTablesEmpty = string.IsNullOrWhiteSpace(toolStripTables_SearchBox.Text);
+			toolStripTables_buttonClearFilter.Visible = !_isSearchTablesEmpty;
 
-			if (_isSearchEmpty)
+			if (_isSearchTablesEmpty)
 			{
 				CodeUpdate = true;
-				toolStrip_searchBox.Text = "Search";
+				toolStripTables_SearchBox.Text = "Search";
 				CodeUpdate = false;
 
-				toolStrip_searchBox.ForeColor = Color.Gray;
-				toolStrip_searchBox.Font =
+				toolStripTables_SearchBox.ForeColor = Color.Gray;
+				toolStripTables_SearchBox.Font =
 					new Font(
-						toolStrip_searchBox.Font,
+						toolStripTables_SearchBox.Font,
 						FontStyle.Italic);
 			}
 			else
 			{
-				toolStrip_searchBox.ForeColor = Color.Black;
+				toolStripTables_SearchBox.ForeColor = Color.Black;
 			}
 		}
 
 
 		// ============================================================================
-		private void toolStrip_buttonClearFilter_Click(object sender, EventArgs e)
+		private void toolStripTables_buttonClearFilter_Click(object sender, EventArgs e)
 		{
 			CodeUpdate = true;
-			toolStrip_searchBox.Text = "Search";
+			toolStripTables_SearchBox.Text = "Search";
 			CodeUpdate = false;
 
-			toolStrip_buttonClearFilter.Visible = false;
-			toolStrip_searchBox.ForeColor = Color.Gray;
-			toolStrip_searchBox.Font =
+			toolStripTables_buttonClearFilter.Visible = false;
+			toolStripTables_SearchBox.ForeColor = Color.Gray;
+			toolStripTables_SearchBox.Font =
 				new Font(
-					toolStrip_searchBox.Font,
+					toolStripTables_SearchBox.Font,
 					FontStyle.Italic);
 
-			_isSearchEmpty = true;
+			_isSearchTablesEmpty = true;
 			listBoxTables.Filter = null;
 		}
+
+
+		
+
+		// ============================================================================
+		private void toolStripAttributes_searchBox_Enter(object sender, EventArgs e)
+		{
+			if (_isSearchAttributesEmpty)
+			{
+				CodeUpdate = true;
+				toolStripAttributes_SearchBox.Text = "";
+				CodeUpdate = false;
+
+				toolStripAttributes_SearchBox.ForeColor = Color.Black;
+				toolStripAttributes_SearchBox.Font =
+					new Font(
+						toolStripAttributes_SearchBox.Font,
+						FontStyle.Regular);
+			}
+		}
+
+
+		// ============================================================================
+		private void toolStripAttributes_searchBox_TextChanged(object sender, EventArgs e)
+		{
+			if (CodeUpdate)
+			{
+				return;
+			}
+
+			_isSearchAttributesEmpty = string.IsNullOrWhiteSpace(toolStripAttributes_SearchBox.Text);
+			toolStripAttributes_buttonClearFilter.Visible = !_isSearchAttributesEmpty;
+
+			if (_isSearchAttributesEmpty)
+			{
+				listBoxAttributes.Filter = null;
+				return;
+			}
+
+			var filter =
+				new SortableCheckListFilter(
+					"LogicalName",
+					toolStripAttributes_SearchBox.Text,
+					ConditionOperator.Contains);
+
+			listBoxAttributes.Filter = filter;
+
+		}
+
+
+		// ============================================================================
+		private void toolStripAttributes_searchBox_Leave(object sender, EventArgs e)
+		{
+			_isSearchAttributesEmpty = string.IsNullOrWhiteSpace(toolStripAttributes_SearchBox.Text);
+			toolStripAttributes_buttonClearFilter.Visible = !_isSearchAttributesEmpty;
+
+			if (_isSearchAttributesEmpty)
+			{
+				CodeUpdate = true;
+				toolStripAttributes_SearchBox.Text = "Search";
+				CodeUpdate = false;
+
+				toolStripAttributes_SearchBox.ForeColor = Color.Gray;
+				toolStripAttributes_SearchBox.Font =
+					new Font(
+						toolStripAttributes_SearchBox.Font,
+						FontStyle.Italic);
+			}
+			else
+			{
+				toolStripTables_SearchBox.ForeColor = Color.Black;
+			}
+		}
+
+
+		// ============================================================================
+		private void toolStripAttributes_buttonClearFilter_Click(object sender, EventArgs e)
+		{
+			CodeUpdate = true;
+			toolStripAttributes_SearchBox.Text = "Search";
+			CodeUpdate = false;
+
+			toolStripAttributes_buttonClearFilter.Visible = false;
+			toolStripAttributes_SearchBox.ForeColor = Color.Gray;
+			toolStripAttributes_SearchBox.Font =
+				new Font(
+					toolStripAttributes_SearchBox.Font,
+					FontStyle.Italic);
+
+			_isSearchAttributesEmpty = true;
+			listBoxAttributes.Filter = null;
+		}
+
+
 
 		// ============================================================================
 		private void listBoxTables_SelectedIndexChanged(object sender, EventArgs e)
@@ -501,6 +600,7 @@ namespace Com.AiricLenz.XTB.Plugin
 
 
 		#endregion
+
 
 		// ##################################################
 		// ##################################################
