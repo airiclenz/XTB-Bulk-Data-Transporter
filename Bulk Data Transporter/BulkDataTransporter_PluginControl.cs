@@ -482,6 +482,23 @@ namespace Com.AiricLenz.XTB.Plugin
 			listBoxTables.Filter = null;
 		}
 
+		// ============================================================================
+		private void listBoxTables_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (listBoxTables.SelectedItem == null)
+			{
+				return;
+			}
+
+			var tableItem =
+				listBoxTables.SelectedItem as EntityMetadata;
+
+			LoadEntityMetadata(
+					tableItem.LogicalName);
+		}
+
+
+
 
 		#endregion
 
@@ -789,9 +806,78 @@ namespace Com.AiricLenz.XTB.Plugin
 		}
 
 
+		// ================================================================================
+		public void LoadEntityMetadata(
+			string entityLogicalName)
+		{
+
+			if (string.IsNullOrWhiteSpace(entityLogicalName))
+			{
+				return;
+			}
+
+			WorkAsync(new WorkAsyncInfo
+			{
+				Message = "Loading Table Metadata...",
+				Work = (worker, args) =>
+				{
+					var request = new RetrieveEntityRequest
+					{
+						LogicalName = entityLogicalName,
+						EntityFilters = EntityFilters.Attributes,
+						RetrieveAsIfPublished = true
+					};
+
+					var result = (RetrieveEntityResponse) Service.Execute(request);
+
+					args.Result = result?.EntityMetadata;
+				},
+				PostWorkCallBack = (args) =>
+				{
+					if (args.Error != null)
+					{
+						MessageBox.Show(
+							args.Error.ToString(),
+							"Error",
+							MessageBoxButtons.OK,
+							MessageBoxIcon.Error);
+
+						return;
+					}
+
+					var result = args.Result as EntityMetadata;
+
+					if (result == null)
+					{
+						return;
+					}
+
+					listBoxAttributes.Items.Clear();
+
+					foreach (var attribute in result.Attributes)
+					{
+						var newItem =
+							new SortableCheckItem(
+								attribute);
+
+						var a = attribute.DisplayName;
+
+						listBoxAttributes.Items.Add(newItem);
+					}
+
+					listBoxAttributes.Filter = null;
+					listBoxAttributes.CheckAllItems();
+					listBoxAttributes.Refresh();
+				}
+			});
+
+		}
+
+
+
 		#endregion
 
-		
+
 	}
 
 

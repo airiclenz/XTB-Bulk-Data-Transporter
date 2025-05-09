@@ -45,23 +45,26 @@ namespace Com.AiricLenz.XTB.Plugin
             this.button_Export = new System.Windows.Forms.ToolStripButton();
             this.button_Settings = new System.Windows.Forms.ToolStripButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage_Configuration = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.panelSeparator = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStrip_searchBox = new System.Windows.Forms.ToolStripTextBox();
             this.toolStrip_buttonClearFilter = new System.Windows.Forms.ToolStripButton();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.richTextBox_log = new System.Windows.Forms.RichTextBox();
-            this.label_Log = new System.Windows.Forms.Label();
             this.listBoxTables = new Com.AiricLenz.XTB.Components.SortableCheckList();
+            this.listBoxAttributes = new Com.AiricLenz.XTB.Components.SortableCheckList();
+            this.tabPage_Log = new System.Windows.Forms.TabPage();
+            this.richTextBox_log = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.toolStripMenu.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage_Configuration.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.tabPage_Log.SuspendLayout();
             this.SuspendLayout();
             // 
             // saveFileDialog1
@@ -170,55 +173,68 @@ namespace Com.AiricLenz.XTB.Plugin
             this.button_Settings.Text = " Settings";
             this.button_Settings.Click += new System.EventHandler(this.button_Settings_Click);
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage_Configuration);
+            this.tabControl1.Controls.Add(this.tabPage_Log);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 42);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1500, 758);
+            this.tabControl1.TabIndex = 7;
+            // 
+            // tabPage_Configuration
+            // 
+            this.tabPage_Configuration.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage_Configuration.Controls.Add(this.splitContainer1);
+            this.tabPage_Configuration.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabPage_Configuration.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_Configuration.Name = "tabPage_Configuration";
+            this.tabPage_Configuration.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_Configuration.Size = new System.Drawing.Size(1492, 732);
+            this.tabPage_Configuration.TabIndex = 0;
+            this.tabPage_Configuration.Text = " Configuration ";
+            // 
             // splitContainer1
             // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(3, 45);
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(3, 3);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.panelSeparator);
             this.splitContainer1.Panel1.Controls.Add(this.toolStrip1);
             this.splitContainer1.Panel1.Controls.Add(this.listBoxTables);
             this.splitContainer1.Panel1MinSize = 300;
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.panel1);
-            this.splitContainer1.Panel2.Controls.Add(this.label_Log);
+            this.splitContainer1.Panel2.Controls.Add(this.listBoxAttributes);
             this.splitContainer1.Panel2MinSize = 300;
-            this.splitContainer1.Size = new System.Drawing.Size(1494, 752);
-            this.splitContainer1.SplitterDistance = 650;
-            this.splitContainer1.TabIndex = 6;
-            this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
-            // 
-            // panelSeparator
-            // 
-            this.panelSeparator.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelSeparator.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.panelSeparator.Location = new System.Drawing.Point(0, 28);
-            this.panelSeparator.Name = "panelSeparator";
-            this.panelSeparator.Size = new System.Drawing.Size(668, 2);
-            this.panelSeparator.TabIndex = 9;
+            this.splitContainer1.Size = new System.Drawing.Size(1486, 726);
+            this.splitContainer1.SplitterDistance = 646;
+            this.splitContainer1.TabIndex = 7;
             // 
             // toolStrip1
             // 
+            this.toolStrip1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.toolStrip1.AutoSize = false;
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStrip_searchBox,
             this.toolStrip_buttonClearFilter});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Location = new System.Drawing.Point(3, 74);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(650, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(640, 25);
             this.toolStrip1.TabIndex = 8;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // toolStrip_searchBox
             // 
             this.toolStrip_searchBox.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStrip_searchBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.toolStrip_searchBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStrip_searchBox.ForeColor = System.Drawing.Color.Gray;
             this.toolStrip_searchBox.Name = "toolStrip_searchBox";
@@ -240,41 +256,6 @@ namespace Com.AiricLenz.XTB.Plugin
             this.toolStrip_buttonClearFilter.Visible = false;
             this.toolStrip_buttonClearFilter.Click += new System.EventHandler(this.toolStrip_buttonClearFilter_Click);
             // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.richTextBox_log);
-            this.panel1.Location = new System.Drawing.Point(15, 156);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(795, 591);
-            this.panel1.TabIndex = 28;
-            // 
-            // richTextBox_log
-            // 
-            this.richTextBox_log.BackColor = System.Drawing.SystemColors.Window;
-            this.richTextBox_log.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox_log.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox_log.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox_log.Location = new System.Drawing.Point(0, 0);
-            this.richTextBox_log.Name = "richTextBox_log";
-            this.richTextBox_log.ReadOnly = true;
-            this.richTextBox_log.Size = new System.Drawing.Size(793, 589);
-            this.richTextBox_log.TabIndex = 27;
-            this.richTextBox_log.Text = "";
-            // 
-            // label_Log
-            // 
-            this.label_Log.AutoSize = true;
-            this.label_Log.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Log.Location = new System.Drawing.Point(12, 137);
-            this.label_Log.Name = "label_Log";
-            this.label_Log.Size = new System.Drawing.Size(30, 16);
-            this.label_Log.TabIndex = 7;
-            this.label_Log.Text = "Log";
-            // 
             // listBoxTables
             // 
             this.listBoxTables.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -294,27 +275,84 @@ namespace Com.AiricLenz.XTB.Plugin
             this.listBoxTables.DragBurgerLineThickness = 1.5F;
             this.listBoxTables.DragBurgerSize = 11;
             this.listBoxTables.Filter = null;
-            this.listBoxTables.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxTables.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxTables.IsCheckable = false;
             this.listBoxTables.IsSortable = false;
-            this.listBoxTables.ItemHeigth = 24;
-            this.listBoxTables.Location = new System.Drawing.Point(3, 35);
+            this.listBoxTables.ItemHeigth = 22;
+            this.listBoxTables.Location = new System.Drawing.Point(3, 102);
             this.listBoxTables.Name = "listBoxTables";
             this.listBoxTables.ShowScrollBar = true;
             this.listBoxTables.ShowTooltips = true;
-            this.listBoxTables.Size = new System.Drawing.Size(644, 712);
+            this.listBoxTables.Size = new System.Drawing.Size(640, 619);
             this.listBoxTables.SortingColumnIndex = -1;
             this.listBoxTables.SortingColumnOrder = System.Windows.Forms.SortOrder.None;
             this.listBoxTables.TabIndex = 7;
             this.listBoxTables.Text = "sortableCheckList1";
-            this.listBoxTables.SelectedIndexChanged += new System.EventHandler(this.listTables_SelectedIndexChanged);
-            this.listBoxTables.ItemChecked += new System.EventHandler(this.listboxTables_ItemCheck);
+            this.listBoxTables.SelectedIndexChanged += new System.EventHandler(this.listBoxTables_SelectedIndexChanged);
+            // 
+            // listBoxAttributes
+            // 
+            this.listBoxAttributes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBoxAttributes.BackColor = System.Drawing.SystemColors.Window;
+            this.listBoxAttributes.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("listBoxAttributes.BackgroundImage")));
+            this.listBoxAttributes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.listBoxAttributes.BorderColor = System.Drawing.SystemColors.ControlDark;
+            this.listBoxAttributes.BorderThickness = 1F;
+            this.listBoxAttributes.CheckBoxMargin = 4;
+            this.listBoxAttributes.CheckBoxRadius = 18;
+            this.listBoxAttributes.CheckBoxSize = 18;
+            this.listBoxAttributes.ColorChecked = System.Drawing.Color.MediumSlateBlue;
+            this.listBoxAttributes.ColorUnchecked = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.listBoxAttributes.ColumnsJson = resources.GetString("listBoxAttributes.ColumnsJson");
+            this.listBoxAttributes.DragBurgerLineThickness = 1.5F;
+            this.listBoxAttributes.DragBurgerSize = 11;
+            this.listBoxAttributes.Filter = null;
+            this.listBoxAttributes.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxAttributes.IsCheckable = true;
+            this.listBoxAttributes.IsSortable = false;
+            this.listBoxAttributes.ItemHeigth = 22;
+            this.listBoxAttributes.Location = new System.Drawing.Point(3, 102);
+            this.listBoxAttributes.Name = "listBoxAttributes";
+            this.listBoxAttributes.ShowScrollBar = true;
+            this.listBoxAttributes.ShowTooltips = true;
+            this.listBoxAttributes.Size = new System.Drawing.Size(830, 619);
+            this.listBoxAttributes.SortingColumnIndex = 0;
+            this.listBoxAttributes.SortingColumnOrder = System.Windows.Forms.SortOrder.Ascending;
+            this.listBoxAttributes.TabIndex = 8;
+            this.listBoxAttributes.Text = "sortableCheckList1";
+            // 
+            // tabPage_Log
+            // 
+            this.tabPage_Log.Controls.Add(this.richTextBox_log);
+            this.tabPage_Log.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabPage_Log.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_Log.Name = "tabPage_Log";
+            this.tabPage_Log.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_Log.Size = new System.Drawing.Size(1492, 732);
+            this.tabPage_Log.TabIndex = 1;
+            this.tabPage_Log.Text = " Log ";
+            this.tabPage_Log.UseVisualStyleBackColor = true;
+            // 
+            // richTextBox_log
+            // 
+            this.richTextBox_log.BackColor = System.Drawing.SystemColors.Window;
+            this.richTextBox_log.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox_log.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox_log.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox_log.Location = new System.Drawing.Point(3, 3);
+            this.richTextBox_log.Name = "richTextBox_log";
+            this.richTextBox_log.ReadOnly = true;
+            this.richTextBox_log.Size = new System.Drawing.Size(1486, 726);
+            this.richTextBox_log.TabIndex = 28;
+            this.richTextBox_log.Text = "";
             // 
             // BulkDataTransporter_PluginControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.toolStripMenu);
             this.MinimumSize = new System.Drawing.Size(700, 600);
             this.Name = "BulkDataTransporter_PluginControl";
@@ -323,22 +361,20 @@ namespace Com.AiricLenz.XTB.Plugin
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
             this.toolStripMenu.ResumeLayout(false);
             this.toolStripMenu.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage_Configuration.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            this.panel1.ResumeLayout(false);
+            this.tabPage_Log.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Label label_Log;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.IO.FileSystemWatcher fileSystemWatcher1;
         private System.Windows.Forms.ToolStrip toolStripMenu;
@@ -349,14 +385,17 @@ namespace Com.AiricLenz.XTB.Plugin
         private System.Windows.Forms.ToolTip toolTip1;
 		private System.Windows.Forms.ToolStripButton button_addAdditionalConnection;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-		private SortableCheckList listBoxTables;
-		private System.Windows.Forms.ToolStrip toolStrip1;
-		private System.Windows.Forms.Panel panelSeparator;
 		private System.Windows.Forms.ToolStripButton button_Settings;
 		private System.Windows.Forms.ToolStripButton button_manageConnections;
-		private System.Windows.Forms.Panel panel1;
-		private System.Windows.Forms.RichTextBox richTextBox_log;
+		private System.Windows.Forms.TabControl tabControl1;
+		private System.Windows.Forms.TabPage tabPage_Configuration;
+		private System.Windows.Forms.TabPage tabPage_Log;
+		private System.Windows.Forms.SplitContainer splitContainer1;
+		private System.Windows.Forms.ToolStrip toolStrip1;
 		private System.Windows.Forms.ToolStripTextBox toolStrip_searchBox;
 		private System.Windows.Forms.ToolStripButton toolStrip_buttonClearFilter;
+		private SortableCheckList listBoxTables;
+		private System.Windows.Forms.RichTextBox richTextBox_log;
+		private SortableCheckList listBoxAttributes;
 	}
 }
