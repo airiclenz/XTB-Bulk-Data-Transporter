@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
-using Com.AiricLenz.Extentions;
 using Com.AiricLenz.XTB.Components;
 using Com.AiricLenz.XTB.Plugin.Helpers;
 using McTools.Xrm.Connection;
@@ -58,6 +58,7 @@ namespace Com.AiricLenz.XTB.Plugin
 		private const string dateTimeFormat = "yyyy-MM-dd HH:mm:ss";
 
 
+
 		// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 		public List<ConnectionDetail> TargetConnections
 		{
@@ -98,16 +99,20 @@ namespace Com.AiricLenz.XTB.Plugin
 
 		#endregion
 
+			
 
 		// ##################################################
 		// ##################################################
-		
+
 		#region Plugin Events
 
 
 		// ============================================================================
 		public BulkDataTransporter_PluginControl()
 		{
+			if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
+				return;
+
 			InitializeComponent();
 
 			richTextBox_log.Text = string.Empty;
@@ -584,8 +589,11 @@ namespace Com.AiricLenz.XTB.Plugin
 		{
 			if (listBoxTables.SelectedItem == null)
 			{
+				toolStripTables_buttonFilter.Enabled = false;
 				return;
 			}
+
+			toolStripTables_buttonFilter.Enabled = true;
 
 			var tableItem =
 				listBoxTables.SelectedItem as EntityMetadata;
@@ -894,7 +902,7 @@ namespace Com.AiricLenz.XTB.Plugin
 					Header = "Table Name",
 					PropertyName = "SchemaName",
 					TooltipText = "The human readable friendly-name of the table.",
-					Width = (_settings.ShowLogicalTableNames ? "55%" : "100%"),
+					Width = (_settings.ShowLogicalTableNames ? "50%" : "100%"),
 					Enabled = _settings.ShowFriendlyTableNames,
 					IsSortable = true,
 				};
@@ -905,7 +913,7 @@ namespace Com.AiricLenz.XTB.Plugin
 					Header = "Logical Name",
 					PropertyName = "LogicalName",
 					TooltipText = "The logical-name of the table.",
-					Width = (_settings.ShowFriendlyTableNames ? "35%" : "100%"),
+					Width = (_settings.ShowFriendlyTableNames ? "45%" : "100%"),
 					Enabled = _settings.ShowLogicalTableNames,
 					IsSortable = true,
 				};
@@ -913,10 +921,10 @@ namespace Com.AiricLenz.XTB.Plugin
 			var colFilter =
 				new ColumnDefinition
 				{
-					Header = "Table Filter",
+					Header = "Has Filter",
 					PropertyName = "",
 					TooltipText = "Shows if a filter is present or not",
-					Width = "60",
+					Width = "50",
 					Enabled = true,
 					IsSortable = true,
 				};

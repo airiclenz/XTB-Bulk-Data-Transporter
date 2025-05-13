@@ -38,40 +38,41 @@ namespace Com.AiricLenz.XTB.Plugin
             this.tssSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenu = new System.Windows.Forms.ToolStrip();
+            this.button_loadMetadata = new System.Windows.Forms.ToolStripButton();
+            this.button_addAdditionalConnection = new System.Windows.Forms.ToolStripButton();
+            this.button_manageConnections = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.button_Export = new System.Windows.Forms.ToolStripButton();
+            this.button_Settings = new System.Windows.Forms.ToolStripButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolStrip_Attributes = new System.Windows.Forms.ToolStrip();
+            this.toolStripAttributes_SearchBox = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripAttributes_buttonClearFilter = new System.Windows.Forms.ToolStripButton();
+            this.toolStripAttributes_buttonShowChecked = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripAttributes_buttonCheckAll = new System.Windows.Forms.ToolStripButton();
+            this.toolStripAttributes_buttonInvertCheck = new System.Windows.Forms.ToolStripButton();
+            this.toolStripAttributes_buttonUncheck = new System.Windows.Forms.ToolStripButton();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage_Configuration = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.toolStrip_Tables = new System.Windows.Forms.ToolStrip();
             this.toolStripTables_SearchBox = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStrip_Attributes = new System.Windows.Forms.ToolStrip();
-            this.toolStripAttributes_SearchBox = new System.Windows.Forms.ToolStripTextBox();
-            this.tabPage_Log = new System.Windows.Forms.TabPage();
-            this.richTextBox_log = new System.Windows.Forms.RichTextBox();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTables_buttonClearFilter = new System.Windows.Forms.ToolStripButton();
             this.toolStripTables_buttonShowChecked = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTables_buttonCheckAll = new System.Windows.Forms.ToolStripButton();
             this.toolStripTables_buttonInvertCheck = new System.Windows.Forms.ToolStripButton();
             this.toolStripTables_buttonUncheck = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTables_buttonFilter = new System.Windows.Forms.ToolStripButton();
             this.listBoxTables = new Com.AiricLenz.XTB.Components.SortableCheckList();
-            this.toolStripAttributes_buttonClearFilter = new System.Windows.Forms.ToolStripButton();
-            this.toolStripAttributes_buttonShowChecked = new System.Windows.Forms.ToolStripButton();
-            this.toolStripAttributes_buttonCheckAll = new System.Windows.Forms.ToolStripButton();
-            this.toolStripAttributes_buttonInvertCheck = new System.Windows.Forms.ToolStripButton();
-            this.toolStripAttributes_buttonUncheck = new System.Windows.Forms.ToolStripButton();
             this.listBoxAttributes = new Com.AiricLenz.XTB.Components.SortableCheckList();
-            this.button_loadMetadata = new System.Windows.Forms.ToolStripButton();
-            this.button_addAdditionalConnection = new System.Windows.Forms.ToolStripButton();
-            this.button_manageConnections = new System.Windows.Forms.ToolStripButton();
-            this.button_Export = new System.Windows.Forms.ToolStripButton();
-            this.button_Settings = new System.Windows.Forms.ToolStripButton();
+            this.tabPage_Log = new System.Windows.Forms.TabPage();
+            this.richTextBox_log = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.toolStripMenu.SuspendLayout();
+            this.toolStrip_Attributes.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage_Configuration.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -79,7 +80,6 @@ namespace Com.AiricLenz.XTB.Plugin
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.toolStrip_Tables.SuspendLayout();
-            this.toolStrip_Attributes.SuspendLayout();
             this.tabPage_Log.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -123,10 +123,167 @@ namespace Com.AiricLenz.XTB.Plugin
             this.toolStripMenu.TabIndex = 4;
             this.toolStripMenu.Text = "toolStrip1";
             // 
+            // button_loadMetadata
+            // 
+            this.button_loadMetadata.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_loadMetadata.Image = ((System.Drawing.Image)(resources.GetObject("button_loadMetadata.Image")));
+            this.button_loadMetadata.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.button_loadMetadata.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.button_loadMetadata.Name = "button_loadMetadata";
+            this.button_loadMetadata.Size = new System.Drawing.Size(141, 39);
+            this.button_loadMetadata.Text = "  Load Metadata";
+            this.button_loadMetadata.ToolTipText = "Load all unmanaged solutions from the environment...";
+            this.button_loadMetadata.Click += new System.EventHandler(this.button_loadMetadata_Click);
+            // 
+            // button_addAdditionalConnection
+            // 
+            this.button_addAdditionalConnection.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_addAdditionalConnection.Image = ((System.Drawing.Image)(resources.GetObject("button_addAdditionalConnection.Image")));
+            this.button_addAdditionalConnection.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.button_addAdditionalConnection.Margin = new System.Windows.Forms.Padding(10, 1, 10, 2);
+            this.button_addAdditionalConnection.Name = "button_addAdditionalConnection";
+            this.button_addAdditionalConnection.Size = new System.Drawing.Size(182, 39);
+            this.button_addAdditionalConnection.Text = " Add Target Connection";
+            this.button_addAdditionalConnection.ToolTipText = "  Connect to Target";
+            this.button_addAdditionalConnection.Click += new System.EventHandler(this.button_addAdditionalConnection_Click);
+            // 
+            // button_manageConnections
+            // 
+            this.button_manageConnections.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_manageConnections.Image = global::Com.AiricLenz.XTB.Plugin.Properties.Resources.connections_32px;
+            this.button_manageConnections.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.button_manageConnections.Margin = new System.Windows.Forms.Padding(10, 1, 10, 2);
+            this.button_manageConnections.Name = "button_manageConnections";
+            this.button_manageConnections.Size = new System.Drawing.Size(171, 39);
+            this.button_manageConnections.Text = " Manage Connections";
+            this.button_manageConnections.ToolTipText = "Manage all connected target environments";
+            this.button_manageConnections.Click += new System.EventHandler(this.button_manageConnections_Click);
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 42);
+            // 
+            // button_Export
+            // 
+            this.button_Export.Enabled = false;
+            this.button_Export.Font = new System.Drawing.Font("Segoe UI", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Export.Image = ((System.Drawing.Image)(resources.GetObject("button_Export.Image")));
+            this.button_Export.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.button_Export.Margin = new System.Windows.Forms.Padding(10, 1, 10, 2);
+            this.button_Export.Name = "button_Export";
+            this.button_Export.Size = new System.Drawing.Size(99, 39);
+            this.button_Export.Text = " Execute ";
+            this.button_Export.ToolTipText = "Export the Solutions";
+            this.button_Export.Click += new System.EventHandler(this.button_Export_Click);
+            // 
+            // button_Settings
+            // 
+            this.button_Settings.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.button_Settings.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Settings.Image = ((System.Drawing.Image)(resources.GetObject("button_Settings.Image")));
+            this.button_Settings.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.button_Settings.Margin = new System.Windows.Forms.Padding(10, 1, 10, 2);
+            this.button_Settings.Name = "button_Settings";
+            this.button_Settings.Size = new System.Drawing.Size(102, 39);
+            this.button_Settings.Text = " Settings";
+            this.button_Settings.Click += new System.EventHandler(this.button_Settings_Click);
+            // 
+            // toolStrip_Attributes
+            // 
+            this.toolStrip_Attributes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.toolStrip_Attributes.AutoSize = false;
+            this.toolStrip_Attributes.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip_Attributes.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripAttributes_SearchBox,
+            this.toolStripAttributes_buttonClearFilter,
+            this.toolStripAttributes_buttonShowChecked,
+            this.toolStripSeparator4,
+            this.toolStripAttributes_buttonCheckAll,
+            this.toolStripAttributes_buttonInvertCheck,
+            this.toolStripAttributes_buttonUncheck});
+            this.toolStrip_Attributes.Location = new System.Drawing.Point(3, 74);
+            this.toolStrip_Attributes.Name = "toolStrip_Attributes";
+            this.toolStrip_Attributes.Size = new System.Drawing.Size(830, 25);
+            this.toolStrip_Attributes.TabIndex = 9;
+            this.toolStrip_Attributes.Text = "Clear filter";
+            this.toolTip1.SetToolTip(this.toolStrip_Attributes, "Clear filter");
+            // 
+            // toolStripAttributes_SearchBox
+            // 
+            this.toolStripAttributes_SearchBox.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripAttributes_SearchBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.toolStripAttributes_SearchBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripAttributes_SearchBox.ForeColor = System.Drawing.Color.Gray;
+            this.toolStripAttributes_SearchBox.Name = "toolStripAttributes_SearchBox";
+            this.toolStripAttributes_SearchBox.Size = new System.Drawing.Size(250, 25);
+            this.toolStripAttributes_SearchBox.Text = "Search";
+            this.toolStripAttributes_SearchBox.Enter += new System.EventHandler(this.toolStripAttributes_searchBox_Enter);
+            this.toolStripAttributes_SearchBox.Leave += new System.EventHandler(this.toolStripAttributes_searchBox_Leave);
+            this.toolStripAttributes_SearchBox.TextChanged += new System.EventHandler(this.toolStripAttributes_searchBox_TextChanged);
+            // 
+            // toolStripAttributes_buttonClearFilter
+            // 
+            this.toolStripAttributes_buttonClearFilter.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripAttributes_buttonClearFilter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripAttributes_buttonClearFilter.Image = global::Com.AiricLenz.XTB.Plugin.Properties.Resources.delete_32px;
+            this.toolStripAttributes_buttonClearFilter.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripAttributes_buttonClearFilter.Name = "toolStripAttributes_buttonClearFilter";
+            this.toolStripAttributes_buttonClearFilter.Size = new System.Drawing.Size(23, 22);
+            this.toolStripAttributes_buttonClearFilter.Text = "toolStripButton1";
+            this.toolStripAttributes_buttonClearFilter.Visible = false;
+            this.toolStripAttributes_buttonClearFilter.Click += new System.EventHandler(this.toolStripAttributes_buttonClearFilter_Click);
+            // 
+            // toolStripAttributes_buttonShowChecked
+            // 
+            this.toolStripAttributes_buttonShowChecked.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripAttributes_buttonShowChecked.Image = global::Com.AiricLenz.XTB.Plugin.Properties.Resources.show_all_16px;
+            this.toolStripAttributes_buttonShowChecked.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripAttributes_buttonShowChecked.Name = "toolStripAttributes_buttonShowChecked";
+            this.toolStripAttributes_buttonShowChecked.Size = new System.Drawing.Size(23, 22);
+            this.toolStripAttributes_buttonShowChecked.Text = "toolStripButton1";
+            this.toolStripAttributes_buttonShowChecked.ToolTipText = "Showing all items";
+            this.toolStripAttributes_buttonShowChecked.Click += new System.EventHandler(this.toolStripAttributes_buttonShowChecked_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.AutoSize = false;
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(20, 25);
+            // 
+            // toolStripAttributes_buttonCheckAll
+            // 
+            this.toolStripAttributes_buttonCheckAll.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripAttributes_buttonCheckAll.Image = global::Com.AiricLenz.XTB.Plugin.Properties.Resources.checked_16px;
+            this.toolStripAttributes_buttonCheckAll.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripAttributes_buttonCheckAll.Name = "toolStripAttributes_buttonCheckAll";
+            this.toolStripAttributes_buttonCheckAll.Size = new System.Drawing.Size(23, 22);
+            this.toolStripAttributes_buttonCheckAll.Text = "toolStripButton1";
+            this.toolStripAttributes_buttonCheckAll.ToolTipText = "Check all items";
+            this.toolStripAttributes_buttonCheckAll.Click += new System.EventHandler(this.toolStripAttributes_buttonCheckAll_Click);
+            // 
+            // toolStripAttributes_buttonInvertCheck
+            // 
+            this.toolStripAttributes_buttonInvertCheck.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripAttributes_buttonInvertCheck.Image = global::Com.AiricLenz.XTB.Plugin.Properties.Resources.invert_check_16px;
+            this.toolStripAttributes_buttonInvertCheck.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripAttributes_buttonInvertCheck.Name = "toolStripAttributes_buttonInvertCheck";
+            this.toolStripAttributes_buttonInvertCheck.Size = new System.Drawing.Size(23, 22);
+            this.toolStripAttributes_buttonInvertCheck.Text = "toolStripButton1";
+            this.toolStripAttributes_buttonInvertCheck.ToolTipText = "Invert check of all items";
+            this.toolStripAttributes_buttonInvertCheck.Click += new System.EventHandler(this.toolStripAttributes_buttonInvertCheck_Click);
+            // 
+            // toolStripAttributes_buttonUncheck
+            // 
+            this.toolStripAttributes_buttonUncheck.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripAttributes_buttonUncheck.Image = global::Com.AiricLenz.XTB.Plugin.Properties.Resources.unchecked_16px;
+            this.toolStripAttributes_buttonUncheck.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripAttributes_buttonUncheck.Name = "toolStripAttributes_buttonUncheck";
+            this.toolStripAttributes_buttonUncheck.Size = new System.Drawing.Size(23, 22);
+            this.toolStripAttributes_buttonUncheck.Text = "toolStripButton1";
+            this.toolStripAttributes_buttonUncheck.ToolTipText = "Uncheck all items";
+            this.toolStripAttributes_buttonUncheck.Click += new System.EventHandler(this.toolStripAttributes_buttonUncheck_Click);
             // 
             // tabControl1
             // 
@@ -207,83 +364,6 @@ namespace Com.AiricLenz.XTB.Plugin
             this.toolStripTables_SearchBox.Leave += new System.EventHandler(this.toolStripTables_searchBox_Leave);
             this.toolStripTables_SearchBox.TextChanged += new System.EventHandler(this.toolStripTables_searchBox_TextChanged);
             // 
-            // toolStrip_Attributes
-            // 
-            this.toolStrip_Attributes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.toolStrip_Attributes.AutoSize = false;
-            this.toolStrip_Attributes.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip_Attributes.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripAttributes_SearchBox,
-            this.toolStripAttributes_buttonClearFilter,
-            this.toolStripAttributes_buttonShowChecked,
-            this.toolStripSeparator4,
-            this.toolStripAttributes_buttonCheckAll,
-            this.toolStripAttributes_buttonInvertCheck,
-            this.toolStripAttributes_buttonUncheck});
-            this.toolStrip_Attributes.Location = new System.Drawing.Point(3, 74);
-            this.toolStrip_Attributes.Name = "toolStrip_Attributes";
-            this.toolStrip_Attributes.Size = new System.Drawing.Size(830, 25);
-            this.toolStrip_Attributes.TabIndex = 9;
-            this.toolStrip_Attributes.Text = "Clear filter";
-            this.toolTip1.SetToolTip(this.toolStrip_Attributes, "Clear filter");
-            // 
-            // toolStripAttributes_SearchBox
-            // 
-            this.toolStripAttributes_SearchBox.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripAttributes_SearchBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.toolStripAttributes_SearchBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripAttributes_SearchBox.ForeColor = System.Drawing.Color.Gray;
-            this.toolStripAttributes_SearchBox.Name = "toolStripAttributes_SearchBox";
-            this.toolStripAttributes_SearchBox.Size = new System.Drawing.Size(250, 25);
-            this.toolStripAttributes_SearchBox.Text = "Search";
-            this.toolStripAttributes_SearchBox.Enter += new System.EventHandler(this.toolStripAttributes_searchBox_Enter);
-            this.toolStripAttributes_SearchBox.Leave += new System.EventHandler(this.toolStripAttributes_searchBox_Leave);
-            this.toolStripAttributes_SearchBox.TextChanged += new System.EventHandler(this.toolStripAttributes_searchBox_TextChanged);
-            // 
-            // tabPage_Log
-            // 
-            this.tabPage_Log.Controls.Add(this.richTextBox_log);
-            this.tabPage_Log.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabPage_Log.Location = new System.Drawing.Point(4, 22);
-            this.tabPage_Log.Name = "tabPage_Log";
-            this.tabPage_Log.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Log.Size = new System.Drawing.Size(1492, 732);
-            this.tabPage_Log.TabIndex = 1;
-            this.tabPage_Log.Text = " Log ";
-            this.tabPage_Log.UseVisualStyleBackColor = true;
-            // 
-            // richTextBox_log
-            // 
-            this.richTextBox_log.BackColor = System.Drawing.SystemColors.Window;
-            this.richTextBox_log.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox_log.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox_log.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox_log.Location = new System.Drawing.Point(3, 3);
-            this.richTextBox_log.Name = "richTextBox_log";
-            this.richTextBox_log.ReadOnly = true;
-            this.richTextBox_log.Size = new System.Drawing.Size(1486, 726);
-            this.richTextBox_log.TabIndex = 28;
-            this.richTextBox_log.Text = "";
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.AutoSize = false;
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(20, 25);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.AutoSize = false;
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(20, 25);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.AutoSize = false;
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(20, 25);
-            // 
             // toolStripTables_buttonClearFilter
             // 
             this.toolStripTables_buttonClearFilter.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
@@ -307,6 +387,12 @@ namespace Com.AiricLenz.XTB.Plugin
             this.toolStripTables_buttonShowChecked.Text = "Showing all items";
             this.toolStripTables_buttonShowChecked.ToolTipText = "Showing all items";
             this.toolStripTables_buttonShowChecked.Click += new System.EventHandler(this.toolStripTables_buttonShowChecked_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.AutoSize = false;
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(20, 25);
             // 
             // toolStripTables_buttonCheckAll
             // 
@@ -341,9 +427,16 @@ namespace Com.AiricLenz.XTB.Plugin
             this.toolStripTables_buttonUncheck.ToolTipText = "Un-Check all items";
             this.toolStripTables_buttonUncheck.Click += new System.EventHandler(this.toolStripTables_buttonUncheck_Click);
             // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.AutoSize = false;
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(20, 25);
+            // 
             // toolStripTables_buttonFilter
             // 
             this.toolStripTables_buttonFilter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripTables_buttonFilter.Enabled = false;
             this.toolStripTables_buttonFilter.Image = global::Com.AiricLenz.XTB.Plugin.Properties.Resources.filter_16px;
             this.toolStripTables_buttonFilter.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripTables_buttonFilter.Name = "toolStripTables_buttonFilter";
@@ -373,7 +466,7 @@ namespace Com.AiricLenz.XTB.Plugin
             this.listBoxTables.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxTables.IsBoldWhenChecked = false;
             this.listBoxTables.IsCheckable = true;
-            this.listBoxTables.IsSortable = false;
+            this.listBoxTables.IsSortable = true;
             this.listBoxTables.ItemHeigth = 22;
             this.listBoxTables.Location = new System.Drawing.Point(3, 102);
             this.listBoxTables.Name = "listBoxTables";
@@ -386,62 +479,6 @@ namespace Com.AiricLenz.XTB.Plugin
             this.listBoxTables.TabIndex = 7;
             this.listBoxTables.Text = "sortableCheckList1";
             this.listBoxTables.SelectedIndexChanged += new System.EventHandler(this.listBoxTables_SelectedIndexChanged);
-            // 
-            // toolStripAttributes_buttonClearFilter
-            // 
-            this.toolStripAttributes_buttonClearFilter.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripAttributes_buttonClearFilter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripAttributes_buttonClearFilter.Image = global::Com.AiricLenz.XTB.Plugin.Properties.Resources.delete_32px;
-            this.toolStripAttributes_buttonClearFilter.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripAttributes_buttonClearFilter.Name = "toolStripAttributes_buttonClearFilter";
-            this.toolStripAttributes_buttonClearFilter.Size = new System.Drawing.Size(23, 22);
-            this.toolStripAttributes_buttonClearFilter.Text = "toolStripButton1";
-            this.toolStripAttributes_buttonClearFilter.Visible = false;
-            this.toolStripAttributes_buttonClearFilter.Click += new System.EventHandler(this.toolStripAttributes_buttonClearFilter_Click);
-            // 
-            // toolStripAttributes_buttonShowChecked
-            // 
-            this.toolStripAttributes_buttonShowChecked.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripAttributes_buttonShowChecked.Image = global::Com.AiricLenz.XTB.Plugin.Properties.Resources.show_all_16px;
-            this.toolStripAttributes_buttonShowChecked.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripAttributes_buttonShowChecked.Name = "toolStripAttributes_buttonShowChecked";
-            this.toolStripAttributes_buttonShowChecked.Size = new System.Drawing.Size(23, 22);
-            this.toolStripAttributes_buttonShowChecked.Text = "toolStripButton1";
-            this.toolStripAttributes_buttonShowChecked.ToolTipText = "Showing all items";
-            this.toolStripAttributes_buttonShowChecked.Click += new System.EventHandler(this.toolStripAttributes_buttonShowChecked_Click);
-            // 
-            // toolStripAttributes_buttonCheckAll
-            // 
-            this.toolStripAttributes_buttonCheckAll.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripAttributes_buttonCheckAll.Image = global::Com.AiricLenz.XTB.Plugin.Properties.Resources.checked_16px;
-            this.toolStripAttributes_buttonCheckAll.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripAttributes_buttonCheckAll.Name = "toolStripAttributes_buttonCheckAll";
-            this.toolStripAttributes_buttonCheckAll.Size = new System.Drawing.Size(23, 22);
-            this.toolStripAttributes_buttonCheckAll.Text = "toolStripButton1";
-            this.toolStripAttributes_buttonCheckAll.ToolTipText = "Check all items";
-            this.toolStripAttributes_buttonCheckAll.Click += new System.EventHandler(this.toolStripAttributes_buttonCheckAll_Click);
-            // 
-            // toolStripAttributes_buttonInvertCheck
-            // 
-            this.toolStripAttributes_buttonInvertCheck.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripAttributes_buttonInvertCheck.Image = global::Com.AiricLenz.XTB.Plugin.Properties.Resources.invert_check_16px;
-            this.toolStripAttributes_buttonInvertCheck.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripAttributes_buttonInvertCheck.Name = "toolStripAttributes_buttonInvertCheck";
-            this.toolStripAttributes_buttonInvertCheck.Size = new System.Drawing.Size(23, 22);
-            this.toolStripAttributes_buttonInvertCheck.Text = "toolStripButton1";
-            this.toolStripAttributes_buttonInvertCheck.ToolTipText = "Invert check of all items";
-            this.toolStripAttributes_buttonInvertCheck.Click += new System.EventHandler(this.toolStripAttributes_buttonInvertCheck_Click);
-            // 
-            // toolStripAttributes_buttonUncheck
-            // 
-            this.toolStripAttributes_buttonUncheck.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripAttributes_buttonUncheck.Image = global::Com.AiricLenz.XTB.Plugin.Properties.Resources.unchecked_16px;
-            this.toolStripAttributes_buttonUncheck.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripAttributes_buttonUncheck.Name = "toolStripAttributes_buttonUncheck";
-            this.toolStripAttributes_buttonUncheck.Size = new System.Drawing.Size(23, 22);
-            this.toolStripAttributes_buttonUncheck.Text = "toolStripButton1";
-            this.toolStripAttributes_buttonUncheck.ToolTipText = "Uncheck all items";
-            this.toolStripAttributes_buttonUncheck.Click += new System.EventHandler(this.toolStripAttributes_buttonUncheck_Click);
             // 
             // listBoxAttributes
             // 
@@ -478,66 +515,30 @@ namespace Com.AiricLenz.XTB.Plugin
             this.listBoxAttributes.TabIndex = 8;
             this.listBoxAttributes.Text = "sortableCheckList1";
             // 
-            // button_loadMetadata
+            // tabPage_Log
             // 
-            this.button_loadMetadata.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_loadMetadata.Image = ((System.Drawing.Image)(resources.GetObject("button_loadMetadata.Image")));
-            this.button_loadMetadata.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.button_loadMetadata.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
-            this.button_loadMetadata.Name = "button_loadMetadata";
-            this.button_loadMetadata.Size = new System.Drawing.Size(141, 39);
-            this.button_loadMetadata.Text = "  Load Metadata";
-            this.button_loadMetadata.ToolTipText = "Load all unmanaged solutions from the environment...";
-            this.button_loadMetadata.Click += new System.EventHandler(this.button_loadMetadata_Click);
+            this.tabPage_Log.Controls.Add(this.richTextBox_log);
+            this.tabPage_Log.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabPage_Log.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_Log.Name = "tabPage_Log";
+            this.tabPage_Log.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_Log.Size = new System.Drawing.Size(1492, 732);
+            this.tabPage_Log.TabIndex = 1;
+            this.tabPage_Log.Text = " Log ";
+            this.tabPage_Log.UseVisualStyleBackColor = true;
             // 
-            // button_addAdditionalConnection
+            // richTextBox_log
             // 
-            this.button_addAdditionalConnection.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_addAdditionalConnection.Image = ((System.Drawing.Image)(resources.GetObject("button_addAdditionalConnection.Image")));
-            this.button_addAdditionalConnection.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.button_addAdditionalConnection.Margin = new System.Windows.Forms.Padding(10, 1, 10, 2);
-            this.button_addAdditionalConnection.Name = "button_addAdditionalConnection";
-            this.button_addAdditionalConnection.Size = new System.Drawing.Size(182, 39);
-            this.button_addAdditionalConnection.Text = " Add Target Connection";
-            this.button_addAdditionalConnection.ToolTipText = "  Connect to Target";
-            this.button_addAdditionalConnection.Click += new System.EventHandler(this.button_addAdditionalConnection_Click);
-            // 
-            // button_manageConnections
-            // 
-            this.button_manageConnections.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_manageConnections.Image = global::Com.AiricLenz.XTB.Plugin.Properties.Resources.connections_32px;
-            this.button_manageConnections.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.button_manageConnections.Margin = new System.Windows.Forms.Padding(10, 1, 10, 2);
-            this.button_manageConnections.Name = "button_manageConnections";
-            this.button_manageConnections.Size = new System.Drawing.Size(171, 39);
-            this.button_manageConnections.Text = " Manage Connections";
-            this.button_manageConnections.ToolTipText = "Manage all connected target environments";
-            this.button_manageConnections.Click += new System.EventHandler(this.button_manageConnections_Click);
-            // 
-            // button_Export
-            // 
-            this.button_Export.Enabled = false;
-            this.button_Export.Font = new System.Drawing.Font("Segoe UI", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Export.Image = ((System.Drawing.Image)(resources.GetObject("button_Export.Image")));
-            this.button_Export.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.button_Export.Margin = new System.Windows.Forms.Padding(10, 1, 10, 2);
-            this.button_Export.Name = "button_Export";
-            this.button_Export.Size = new System.Drawing.Size(99, 39);
-            this.button_Export.Text = " Execute ";
-            this.button_Export.ToolTipText = "Export the Solutions";
-            this.button_Export.Click += new System.EventHandler(this.button_Export_Click);
-            // 
-            // button_Settings
-            // 
-            this.button_Settings.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.button_Settings.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Settings.Image = ((System.Drawing.Image)(resources.GetObject("button_Settings.Image")));
-            this.button_Settings.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.button_Settings.Margin = new System.Windows.Forms.Padding(10, 1, 10, 2);
-            this.button_Settings.Name = "button_Settings";
-            this.button_Settings.Size = new System.Drawing.Size(102, 39);
-            this.button_Settings.Text = " Settings";
-            this.button_Settings.Click += new System.EventHandler(this.button_Settings_Click);
+            this.richTextBox_log.BackColor = System.Drawing.SystemColors.Window;
+            this.richTextBox_log.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox_log.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox_log.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox_log.Location = new System.Drawing.Point(3, 3);
+            this.richTextBox_log.Name = "richTextBox_log";
+            this.richTextBox_log.ReadOnly = true;
+            this.richTextBox_log.Size = new System.Drawing.Size(1486, 726);
+            this.richTextBox_log.TabIndex = 28;
+            this.richTextBox_log.Text = "";
             // 
             // BulkDataTransporter_PluginControl
             // 
@@ -552,6 +553,8 @@ namespace Com.AiricLenz.XTB.Plugin
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
             this.toolStripMenu.ResumeLayout(false);
             this.toolStripMenu.PerformLayout();
+            this.toolStrip_Attributes.ResumeLayout(false);
+            this.toolStrip_Attributes.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage_Configuration.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -560,8 +563,6 @@ namespace Com.AiricLenz.XTB.Plugin
             this.splitContainer1.ResumeLayout(false);
             this.toolStrip_Tables.ResumeLayout(false);
             this.toolStrip_Tables.PerformLayout();
-            this.toolStrip_Attributes.ResumeLayout(false);
-            this.toolStrip_Attributes.PerformLayout();
             this.tabPage_Log.ResumeLayout(false);
             this.ResumeLayout(false);
 
