@@ -18,11 +18,9 @@ using XrmToolBox.Extensibility;
 
 // ============================================================================
 // ============================================================================
-// ============================================================================
 namespace Com.AiricLenz.XTB.Plugin
 {
 
-	// ============================================================================
 	// ============================================================================
 	// ============================================================================
 	public partial class BulkDataTransporter_PluginControl : MultipleConnectionsPluginControlBase
@@ -157,7 +155,7 @@ namespace Com.AiricLenz.XTB.Plugin
 
 
 			UpdateAllConnectionTimeouts();
-			LoadMetadata();
+			LoadTables();
 		}
 
 
@@ -260,7 +258,7 @@ namespace Com.AiricLenz.XTB.Plugin
 					}
 				}
 
-				LoadMetadata();
+				LoadTables();
 
 				button_loadMetadata.Enabled = Service != null;
 			}
@@ -276,7 +274,7 @@ namespace Com.AiricLenz.XTB.Plugin
 			button_manageConnections.Visible = TargetConnections?.Count > 0;
 
 
-			LoadMetadata();
+			LoadTables();
 
 			_connectionManager?.UpdateConnections();
 
@@ -313,7 +311,7 @@ namespace Com.AiricLenz.XTB.Plugin
 		// ============================================================================
 		private void button_loadMetadata_Click(object sender, EventArgs e)
 		{
-			LoadMetadata();
+			LoadTables();
 		}
 
 
@@ -597,7 +595,79 @@ namespace Com.AiricLenz.XTB.Plugin
 		}
 
 
+		// ============================================================================
+		private void toolStripTables_buttonShowChecked_Click(object sender, EventArgs e)
+		{
+			listBoxTables.ShowOnlyCheckedItems = !listBoxTables.ShowOnlyCheckedItems;
 
+			if (listBoxTables.ShowOnlyCheckedItems)
+			{
+				toolStripTables_buttonShowChecked.Image = Properties.Resources.show_selected_16px;
+				toolStripTables_buttonShowChecked.ToolTipText =
+					"Showing only checked items";
+			}
+			else
+			{
+				toolStripTables_buttonShowChecked.Image = Properties.Resources.show_all_16px;
+				toolStripTables_buttonShowChecked.ToolTipText =
+					"Showing all items";
+			}
+		}
+
+		// ============================================================================
+		private void toolStripAttributes_buttonShowChecked_Click(object sender, EventArgs e)
+		{
+			listBoxAttributes.ShowOnlyCheckedItems = !listBoxAttributes.ShowOnlyCheckedItems;
+
+			if (listBoxAttributes.ShowOnlyCheckedItems)
+			{
+				toolStripAttributes_buttonShowChecked.Image = Properties.Resources.show_selected_16px;
+				toolStripAttributes_buttonShowChecked.ToolTipText =
+					"Showing only checked items";
+			}
+			else
+			{
+				toolStripAttributes_buttonShowChecked.Image = Properties.Resources.show_all_16px;
+				toolStripAttributes_buttonShowChecked.ToolTipText =
+					"Showing all items";
+			}
+		}
+
+		// ============================================================================
+		private void toolStripTables_buttonCheckAll_Click(object sender, EventArgs e)
+		{
+			listBoxTables.CheckAllItems();
+		}
+
+		// ============================================================================
+		private void toolStripTables_buttonInvertCheck_Click(object sender, EventArgs e)
+		{
+			listBoxTables.InvertCheckOfAllItems();
+		}
+
+		// ============================================================================
+		private void toolStripTables_buttonUncheck_Click(object sender, EventArgs e)
+		{
+			listBoxTables.UnCheckAllItems();
+		}
+
+		// ================================================================================
+		private void toolStripAttributes_buttonCheckAll_Click(object sender, EventArgs e)
+		{
+			listBoxAttributes.CheckAllItems();
+		}
+
+		// ================================================================================
+		private void toolStripAttributes_buttonInvertCheck_Click(object sender, EventArgs e)
+		{
+			listBoxAttributes.InvertCheckOfAllItems();
+		}
+
+		// ================================================================================
+		private void toolStripAttributes_buttonUncheck_Click(object sender, EventArgs e)
+		{
+			listBoxAttributes.UnCheckAllItems();
+		}
 
 		#endregion
 
@@ -629,7 +699,7 @@ namespace Com.AiricLenz.XTB.Plugin
 
 
 		// ============================================================================
-		private void LoadMetadata()
+		private void LoadTables()
 		{
 			if (Service == null)
 			{
@@ -638,7 +708,7 @@ namespace Com.AiricLenz.XTB.Plugin
 
 			WorkAsync(new WorkAsyncInfo
 			{
-				Message = "Loading Metadata...",
+				Message = "Loading Tables...",
 				Work = (worker, args) =>
 				{
 					// LOAD ALL TABLES
@@ -824,7 +894,7 @@ namespace Com.AiricLenz.XTB.Plugin
 					Header = "Table Name",
 					PropertyName = "SchemaName",
 					TooltipText = "The human readable friendly-name of the table.",
-					Width = (_settings.ShowLogicalTableNames ? "60%" : "100%"),
+					Width = (_settings.ShowLogicalTableNames ? "55%" : "100%"),
 					Enabled = _settings.ShowFriendlyTableNames,
 					IsSortable = true,
 				};
@@ -835,11 +905,21 @@ namespace Com.AiricLenz.XTB.Plugin
 					Header = "Logical Name",
 					PropertyName = "LogicalName",
 					TooltipText = "The logical-name of the table.",
-					Width = (_settings.ShowFriendlyTableNames ? "40%" : "100%"),
+					Width = (_settings.ShowFriendlyTableNames ? "35%" : "100%"),
 					Enabled = _settings.ShowLogicalTableNames,
 					IsSortable = true,
 				};
 
+			var colFilter =
+				new ColumnDefinition
+				{
+					Header = "Table Filter",
+					PropertyName = "",
+					TooltipText = "Shows if a filter is present or not",
+					Width = "60",
+					Enabled = true,
+					IsSortable = true,
+				};
 
 
 			CodeUpdate = true;
@@ -849,6 +929,7 @@ namespace Com.AiricLenz.XTB.Plugin
 				{
 					colFriendlyName,		// 0
 					colLogicalName,			// 1
+					colFilter				// 2
 				};
 
 
@@ -856,8 +937,6 @@ namespace Com.AiricLenz.XTB.Plugin
 			listBoxTables.SortingColumnOrder = _settings.SortingColumnOrder;
 
 			CodeUpdate = false;
-
-			//listboxTables.Refresh();
 		}
 
 
@@ -977,7 +1056,7 @@ namespace Com.AiricLenz.XTB.Plugin
 
 		#endregion
 
-
+		
 	}
 
 

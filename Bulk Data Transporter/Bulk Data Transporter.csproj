@@ -279,6 +279,14 @@
     <Compile Include="Extentions\StringExtention.cs" />
     <Compile Include="Helpers\Logger.cs" />
     <Compile Include="Helpers\MarkdownParser.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Schema\Attribute.cs" />
+    <Compile Include="Schema\ConfigData.cs" />
+    <Compile Include="Schema\Table.cs" />
     <Compile Include="SettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -290,11 +298,6 @@
     <Compile Include="Helpers\Formatter.cs" />
     <Compile Include="Helpers\GitHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <None Include="app.config" />
     <None Include="BulkDataTransporter.nuspec" />
     <None Include="Scripts\NuGet Pack.bat" />
@@ -327,18 +330,15 @@
     <None Include="Resources\connections.32px.png" />
     <None Include="Resources\export.16px.png" />
     <None Include="Resources\adjustment.32px.png" />
-    <None Include="Resources\missmatch.png" />
-    <None Include="Resources\missing.png" />
-    <None Include="Resources\match.png" />
-    <None Include="Resources\warning_transparent.16px.png" />
-    <None Include="Resources\warning.16px.png" />
-    <None Include="Resources\FileStatus_XX.png" />
-    <None Include="Resources\FileStatus_XU.png" />
-    <None Include="Resources\FileStatus_MX.png" />
-    <None Include="Resources\FileStatus_MU.png" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Schema\" />
+    <None Include="Resources\filter.16px.png" />
+    <None Include="Resources\invert check.16px.png" />
+    <None Include="Resources\checked.16px.png" />
+    <Content Include="Resources\show all.16px.png" />
+    <Content Include="Resources\show selected.16px.png" />
+    <None Include="Resources\unchecked.16px.png" />
   </ItemGroup>
   <Import Project="..\XTB Components\XTB Components.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

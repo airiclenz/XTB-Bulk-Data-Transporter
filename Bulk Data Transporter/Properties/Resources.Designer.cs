@@ -83,6 +83,16 @@ namespace Com.AiricLenz.XTB.Plugin.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap checked_16px {
+            get {
+                object obj = ResourceManager.GetObject("checked_16px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap connections_32px {
             get {
                 object obj = ResourceManager.GetObject("connections_32px", resourceCulture);
@@ -113,9 +123,9 @@ namespace Com.AiricLenz.XTB.Plugin.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap FileStatus_MU {
+        internal static System.Drawing.Bitmap filter_16px {
             get {
-                object obj = ResourceManager.GetObject("FileStatus_MU", resourceCulture);
+                object obj = ResourceManager.GetObject("filter_16px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +133,9 @@ namespace Com.AiricLenz.XTB.Plugin.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap FileStatus_MX {
+        internal static System.Drawing.Bitmap invert_check_16px {
             get {
-                object obj = ResourceManager.GetObject("FileStatus_MX", resourceCulture);
+                object obj = ResourceManager.GetObject("invert_check_16px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +143,9 @@ namespace Com.AiricLenz.XTB.Plugin.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap FileStatus_XU {
+        internal static System.Drawing.Bitmap show_all_16px {
             get {
-                object obj = ResourceManager.GetObject("FileStatus_XU", resourceCulture);
+                object obj = ResourceManager.GetObject("show all.16px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,9 +153,9 @@ namespace Com.AiricLenz.XTB.Plugin.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap FileStatus_XX {
+        internal static System.Drawing.Bitmap show_selected_16px {
             get {
-                object obj = ResourceManager.GetObject("FileStatus_XX", resourceCulture);
+                object obj = ResourceManager.GetObject("show selected.16px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -153,39 +163,9 @@ namespace Com.AiricLenz.XTB.Plugin.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap match {
+        internal static System.Drawing.Bitmap unchecked_16px {
             get {
-                object obj = ResourceManager.GetObject("match", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap missing {
-            get {
-                object obj = ResourceManager.GetObject("missing", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap missmatch {
-            get {
-                object obj = ResourceManager.GetObject("missmatch", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Warning {
-            get {
-                object obj = ResourceManager.GetObject("Warning", resourceCulture);
+                object obj = ResourceManager.GetObject("unchecked_16px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
