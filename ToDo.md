@@ -1,10 +1,21 @@
 
 # To-Do's
 
-- Store metadata and settings globally and per session
-- Allow for sorting entities
-- Show only selected button
+- add settings:
+  - bulk execution
+  - batch size
+  - auto mappting of:
+	- root buiness unit
+	- system user
+	- system currency
+- add table options:
+  - create
+  - update
+  - delete  
 
 
-## Added in Release 2025.03.<mark>XX</mark>
+# Added in Release 2025.03.<mark>XX</mark>
 
+- store metadata and settings globally and per session
+- allow for sorting entities
+- show only selected button

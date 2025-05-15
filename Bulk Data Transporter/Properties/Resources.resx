@@ -151,4 +151,46 @@
   <data name="unchecked_16px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\unchecked.16px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="isFiltered" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\isFiltered.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="metadata_18px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\metadata.18px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="create_disabled_16px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\create.disabled.16px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="create_enabled_16px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\create.enabled.16px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="delete_disabled_16px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\delete.disabled.16px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="delete_enabled_16px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\delete.enabled.16px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="update_disabled_16px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\update.disabled.16px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="update_enabled_16px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\update.enabled.16px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="create_disabled_18px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\create.disabled.18px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="create_enabled_18px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\create.enabled.18px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="delete_disabled_18px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\delete.disabled.18px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="delete_enabled_18px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\delete.enabled.18px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="update_disabled_18px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\update.disabled.18px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="update_enabled_18px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\update.enabled.18px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

@@ -18,7 +18,7 @@ namespace Com.AiricLenz.XTB.Plugin.Schema
 		public string DisplayName { get; set; } = string.Empty;
 		public string TypeName { get; set; } = string.Empty;
 		public Bitmap TypeImage { get; } = null;
-		public bool IsSelected { get; set; } = false;
+		public bool IsChecked { get; set; } = false;
 
 	}
 }

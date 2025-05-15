@@ -56,6 +56,7 @@ namespace Com.AiricLenz.XTB.Plugin
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage_Configuration = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.splitter1 = new System.Windows.Forms.Splitter();
             this.toolStrip_Tables = new System.Windows.Forms.ToolStrip();
             this.toolStripTables_SearchBox = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripTables_buttonClearFilter = new System.Windows.Forms.ToolStripButton();
@@ -66,6 +67,10 @@ namespace Com.AiricLenz.XTB.Plugin
             this.toolStripTables_buttonUncheck = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTables_buttonFilter = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripTables_buttonCreate = new System.Windows.Forms.ToolStripButton();
+            this.toolStripTables_buttonUpdate = new System.Windows.Forms.ToolStripButton();
+            this.toolStripTables_buttonDelete = new System.Windows.Forms.ToolStripButton();
             this.listBoxTables = new Com.AiricLenz.XTB.Components.SortableCheckList();
             this.listBoxAttributes = new Com.AiricLenz.XTB.Components.SortableCheckList();
             this.tabPage_Log = new System.Windows.Forms.TabPage();
@@ -191,10 +196,7 @@ namespace Com.AiricLenz.XTB.Plugin
             // 
             // toolStrip_Attributes
             // 
-            this.toolStrip_Attributes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.toolStrip_Attributes.AutoSize = false;
-            this.toolStrip_Attributes.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStrip_Attributes.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripAttributes_SearchBox,
             this.toolStripAttributes_buttonClearFilter,
@@ -203,9 +205,9 @@ namespace Com.AiricLenz.XTB.Plugin
             this.toolStripAttributes_buttonCheckAll,
             this.toolStripAttributes_buttonInvertCheck,
             this.toolStripAttributes_buttonUncheck});
-            this.toolStrip_Attributes.Location = new System.Drawing.Point(3, 74);
+            this.toolStrip_Attributes.Location = new System.Drawing.Point(10, 0);
             this.toolStrip_Attributes.Name = "toolStrip_Attributes";
-            this.toolStrip_Attributes.Size = new System.Drawing.Size(830, 25);
+            this.toolStrip_Attributes.Size = new System.Drawing.Size(829, 25);
             this.toolStrip_Attributes.TabIndex = 9;
             this.toolStrip_Attributes.Text = "Clear filter";
             this.toolTip1.SetToolTip(this.toolStrip_Attributes, "Clear filter");
@@ -217,7 +219,7 @@ namespace Com.AiricLenz.XTB.Plugin
             this.toolStripAttributes_SearchBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripAttributes_SearchBox.ForeColor = System.Drawing.Color.Gray;
             this.toolStripAttributes_SearchBox.Name = "toolStripAttributes_SearchBox";
-            this.toolStripAttributes_SearchBox.Size = new System.Drawing.Size(250, 25);
+            this.toolStripAttributes_SearchBox.Size = new System.Drawing.Size(200, 25);
             this.toolStripAttributes_SearchBox.Text = "Search";
             this.toolStripAttributes_SearchBox.Enter += new System.EventHandler(this.toolStripAttributes_searchBox_Enter);
             this.toolStripAttributes_SearchBox.Leave += new System.EventHandler(this.toolStripAttributes_searchBox_Leave);
@@ -310,31 +312,43 @@ namespace Com.AiricLenz.XTB.Plugin
             // 
             // splitContainer1
             // 
+            this.splitContainer1.BackColor = System.Drawing.Color.Gainsboro;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(3, 3);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.splitContainer1.Panel1.Controls.Add(this.splitter1);
             this.splitContainer1.Panel1.Controls.Add(this.toolStrip_Tables);
             this.splitContainer1.Panel1.Controls.Add(this.listBoxTables);
+            this.splitContainer1.Panel1.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
             this.splitContainer1.Panel1MinSize = 300;
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.Control;
             this.splitContainer1.Panel2.Controls.Add(this.toolStrip_Attributes);
             this.splitContainer1.Panel2.Controls.Add(this.listBoxAttributes);
-            this.splitContainer1.Panel2MinSize = 300;
+            this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.splitContainer1.Panel2MinSize = 400;
             this.splitContainer1.Size = new System.Drawing.Size(1486, 726);
             this.splitContainer1.SplitterDistance = 646;
+            this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 7;
+            // 
+            // splitter1
+            // 
+            this.splitter1.Location = new System.Drawing.Point(0, 25);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(3, 701);
+            this.splitter1.TabIndex = 0;
+            this.splitter1.TabStop = false;
             // 
             // toolStrip_Tables
             // 
-            this.toolStrip_Tables.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.toolStrip_Tables.AutoSize = false;
-            this.toolStrip_Tables.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStrip_Tables.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripTables_SearchBox,
             this.toolStripTables_buttonClearFilter,
@@ -344,10 +358,14 @@ namespace Com.AiricLenz.XTB.Plugin
             this.toolStripTables_buttonInvertCheck,
             this.toolStripTables_buttonUncheck,
             this.toolStripSeparator5,
-            this.toolStripTables_buttonFilter});
-            this.toolStrip_Tables.Location = new System.Drawing.Point(3, 74);
+            this.toolStripTables_buttonFilter,
+            this.toolStripSeparator6,
+            this.toolStripTables_buttonCreate,
+            this.toolStripTables_buttonUpdate,
+            this.toolStripTables_buttonDelete});
+            this.toolStrip_Tables.Location = new System.Drawing.Point(0, 0);
             this.toolStrip_Tables.Name = "toolStrip_Tables";
-            this.toolStrip_Tables.Size = new System.Drawing.Size(640, 25);
+            this.toolStrip_Tables.Size = new System.Drawing.Size(636, 25);
             this.toolStrip_Tables.TabIndex = 8;
             this.toolStrip_Tables.Text = "toolStrip1";
             // 
@@ -358,7 +376,7 @@ namespace Com.AiricLenz.XTB.Plugin
             this.toolStripTables_SearchBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripTables_SearchBox.ForeColor = System.Drawing.Color.Gray;
             this.toolStripTables_SearchBox.Name = "toolStripTables_SearchBox";
-            this.toolStripTables_SearchBox.Size = new System.Drawing.Size(250, 25);
+            this.toolStripTables_SearchBox.Size = new System.Drawing.Size(200, 25);
             this.toolStripTables_SearchBox.Text = "Search";
             this.toolStripTables_SearchBox.Enter += new System.EventHandler(this.toolStripTables_searchBox_Enter);
             this.toolStripTables_SearchBox.Leave += new System.EventHandler(this.toolStripTables_searchBox_Leave);
@@ -443,6 +461,47 @@ namespace Com.AiricLenz.XTB.Plugin
             this.toolStripTables_buttonFilter.Size = new System.Drawing.Size(23, 22);
             this.toolStripTables_buttonFilter.Text = "Add / Edit Filter";
             this.toolStripTables_buttonFilter.ToolTipText = "Add / Edit Filter";
+            this.toolStripTables_buttonFilter.Click += new System.EventHandler(this.toolStripTables_buttonFilter_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.AutoSize = false;
+            this.toolStripSeparator6.ForeColor = System.Drawing.Color.Transparent;
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(20, 25);
+            // 
+            // toolStripTables_buttonCreate
+            // 
+            this.toolStripTables_buttonCreate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripTables_buttonCreate.Enabled = false;
+            this.toolStripTables_buttonCreate.Image = global::Com.AiricLenz.XTB.Plugin.Properties.Resources.create_disabled_16px;
+            this.toolStripTables_buttonCreate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripTables_buttonCreate.Name = "toolStripTables_buttonCreate";
+            this.toolStripTables_buttonCreate.Size = new System.Drawing.Size(23, 22);
+            this.toolStripTables_buttonCreate.Text = "toolStripButton1";
+            this.toolStripTables_buttonCreate.Click += new System.EventHandler(this.toolStripTables_buttonCreate_Click);
+            // 
+            // toolStripTables_buttonUpdate
+            // 
+            this.toolStripTables_buttonUpdate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripTables_buttonUpdate.Enabled = false;
+            this.toolStripTables_buttonUpdate.Image = global::Com.AiricLenz.XTB.Plugin.Properties.Resources.update_disabled_16px;
+            this.toolStripTables_buttonUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripTables_buttonUpdate.Name = "toolStripTables_buttonUpdate";
+            this.toolStripTables_buttonUpdate.Size = new System.Drawing.Size(23, 22);
+            this.toolStripTables_buttonUpdate.Text = "toolStripButton1";
+            this.toolStripTables_buttonUpdate.Click += new System.EventHandler(this.toolStripTables_buttonUpdate_Click);
+            // 
+            // toolStripTables_buttonDelete
+            // 
+            this.toolStripTables_buttonDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripTables_buttonDelete.Enabled = false;
+            this.toolStripTables_buttonDelete.Image = global::Com.AiricLenz.XTB.Plugin.Properties.Resources.delete_disabled_16px;
+            this.toolStripTables_buttonDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripTables_buttonDelete.Name = "toolStripTables_buttonDelete";
+            this.toolStripTables_buttonDelete.Size = new System.Drawing.Size(23, 22);
+            this.toolStripTables_buttonDelete.Text = "Delete records in target environment that are not existing in source environment";
+            this.toolStripTables_buttonDelete.Click += new System.EventHandler(this.toolStripTables_buttonDelete_Click);
             // 
             // listBoxTables
             // 
@@ -468,12 +527,12 @@ namespace Com.AiricLenz.XTB.Plugin
             this.listBoxTables.IsCheckable = true;
             this.listBoxTables.IsSortable = true;
             this.listBoxTables.ItemHeigth = 22;
-            this.listBoxTables.Location = new System.Drawing.Point(3, 102);
+            this.listBoxTables.Location = new System.Drawing.Point(3, 28);
             this.listBoxTables.Name = "listBoxTables";
             this.listBoxTables.ShowOnlyCheckedItems = false;
             this.listBoxTables.ShowScrollBar = true;
             this.listBoxTables.ShowTooltips = true;
-            this.listBoxTables.Size = new System.Drawing.Size(640, 619);
+            this.listBoxTables.Size = new System.Drawing.Size(633, 698);
             this.listBoxTables.SortingColumnIndex = -1;
             this.listBoxTables.SortingColumnOrder = System.Windows.Forms.SortOrder.None;
             this.listBoxTables.TabIndex = 7;
@@ -504,16 +563,17 @@ namespace Com.AiricLenz.XTB.Plugin
             this.listBoxAttributes.IsCheckable = true;
             this.listBoxAttributes.IsSortable = false;
             this.listBoxAttributes.ItemHeigth = 22;
-            this.listBoxAttributes.Location = new System.Drawing.Point(3, 102);
+            this.listBoxAttributes.Location = new System.Drawing.Point(10, 28);
             this.listBoxAttributes.Name = "listBoxAttributes";
             this.listBoxAttributes.ShowOnlyCheckedItems = false;
             this.listBoxAttributes.ShowScrollBar = true;
             this.listBoxAttributes.ShowTooltips = true;
-            this.listBoxAttributes.Size = new System.Drawing.Size(830, 619);
-            this.listBoxAttributes.SortingColumnIndex = 0;
+            this.listBoxAttributes.Size = new System.Drawing.Size(828, 698);
+            this.listBoxAttributes.SortingColumnIndex = 1;
             this.listBoxAttributes.SortingColumnOrder = System.Windows.Forms.SortOrder.Ascending;
             this.listBoxAttributes.TabIndex = 8;
             this.listBoxAttributes.Text = "sortableCheckList1";
+            this.listBoxAttributes.ItemChecked += new System.EventHandler<ItemEventArgs>(this.listBoxAttributes_ItemChecked);
             // 
             // tabPage_Log
             // 
@@ -606,5 +666,10 @@ namespace Com.AiricLenz.XTB.Plugin
 		private System.Windows.Forms.ToolStripButton toolStripAttributes_buttonUncheck;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
 		private System.Windows.Forms.ToolStripButton toolStripTables_buttonFilter;
+		private System.Windows.Forms.ToolStripButton toolStripTables_buttonCreate;
+		private System.Windows.Forms.ToolStripButton toolStripTables_buttonUpdate;
+		private System.Windows.Forms.ToolStripButton toolStripTables_buttonDelete;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+		private System.Windows.Forms.Splitter splitter1;
 	}
 }

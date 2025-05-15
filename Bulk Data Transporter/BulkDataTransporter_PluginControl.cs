@@ -5,16 +5,18 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.Remoting.Messaging;
 using System.Windows.Forms;
 using Com.AiricLenz.XTB.Components;
 using Com.AiricLenz.XTB.Plugin.Helpers;
+using Com.AiricLenz.XTB.Plugin.Schema;
 using McTools.Xrm.Connection;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Metadata;
 using Microsoft.Xrm.Tooling.Connector;
 using XrmToolBox.Extensibility;
-
+using Schema = Com.AiricLenz.XTB.Plugin.Schema;
 
 // ============================================================================
 // ============================================================================
@@ -36,15 +38,13 @@ namespace Com.AiricLenz.XTB.Plugin
 		private Settings _settings;
 		private bool _codeUpdate = false;
 		private bool _codeUpdateSplitter = false;
-		private Guid _currentConnectionGuid;
-
+		
 		private ConnectionManager _connectionManager = null;
 		private Logger _logger = null;
 		private bool _isSearchTablesEmpty = true;
 		private bool _isSearchAttributesEmpty = true;
 
-		private object origin;
-		private object target;
+		private List<Table> _tables = new List<Table>();
 
 		private const string ColorError = "<color=#770000>";
 		private const string ColorSolution = "<color=#000077>";
@@ -121,6 +121,24 @@ namespace Com.AiricLenz.XTB.Plugin
 			_logger.Indent = ColorIndent + "|" + ColorEndTag + "   ";
 
 			ParentChanged += MyPlugin_ParentChanged;
+
+			Schema.Table.SetFilterImage(
+				Properties.Resources.isFiltered);
+
+			Schema.Table.SetMetadataImage(
+				Properties.Resources.metadata_18px);
+
+			Schema.Table.SetCreateImages(
+				Properties.Resources.create_enabled_18px,
+				Properties.Resources.create_disabled_18px);
+
+			Schema.Table.SetUpdateImages(
+				Properties.Resources.update_enabled_18px,
+				Properties.Resources.update_disabled_18px);
+
+			Schema.Table.SetDeleteImages(
+				Properties.Resources.delete_enabled_18px,
+				Properties.Resources.delete_disabled_18px);
 
 			UpdateColumns();
 		}
@@ -246,8 +264,6 @@ namespace Com.AiricLenz.XTB.Plugin
 		{
 			if (actionName != "AdditionalOrganization")
 			{
-				_currentConnectionGuid = detail.ConnectionId.Value;
-
 				if (_settings != null &&
 					detail != null)
 				{
@@ -590,16 +606,17 @@ namespace Com.AiricLenz.XTB.Plugin
 			if (listBoxTables.SelectedItem == null)
 			{
 				toolStripTables_buttonFilter.Enabled = false;
-				return;
+				listBoxAttributes.Items.Clear();
+				listBoxAttributes.Refresh();
 			}
-
-			toolStripTables_buttonFilter.Enabled = true;
-
-			var tableItem =
-				listBoxTables.SelectedItem as EntityMetadata;
-
-			LoadEntityMetadata(
-					tableItem.LogicalName);
+			else
+			{
+				toolStripTables_buttonFilter.Enabled = true;
+				UpdateMetadataForSelectedTable();
+			}
+				
+			UpdateCUDButtonStatuses();
+			
 		}
 
 
@@ -677,6 +694,118 @@ namespace Com.AiricLenz.XTB.Plugin
 			listBoxAttributes.UnCheckAllItems();
 		}
 
+		// ================================================================================
+		private void toolStripTables_buttonFilter_Click(object sender, EventArgs e)
+		{
+			if (listBoxTables.SelectedItem == null)
+			{
+				return;
+			}
+
+			var table = listBoxTables.SelectedItem as Table;
+			table.FetchXmlFilter = "<fetchXml />";
+
+			listBoxTables.Refresh();
+		}
+
+
+		// ================================================================================
+		private void toolStripTables_buttonCreate_Click(object sender, EventArgs e)
+		{
+			if (listBoxTables.SelectedItem == null)
+			{
+				return;
+			}
+
+			var table = listBoxTables.SelectedItem as Table;
+
+			table.IsCreate = !table.IsCreate;
+			UpdateCUDButtonStatuses();
+			listBoxTables.Refresh();
+		}
+
+		// ================================================================================
+		private void toolStripTables_buttonUpdate_Click(object sender, EventArgs e)
+		{
+			if (listBoxTables.SelectedItem == null)
+			{
+				return;
+			}
+
+			var table = listBoxTables.SelectedItem as Table;
+
+			table.IsUpdate = !table.IsUpdate;
+			UpdateCUDButtonStatuses();
+			listBoxTables.Refresh();
+		}
+
+		// ================================================================================
+		private void toolStripTables_buttonDelete_Click(object sender, EventArgs e)
+		{
+			if (listBoxTables.SelectedItem == null)
+			{
+				return;
+			}
+
+			var table = listBoxTables.SelectedItem as Table;
+
+			table.IsDelete = !table.IsDelete;
+			UpdateCUDButtonStatuses();
+			listBoxTables.Refresh();
+		}
+
+
+		// ================================================================================
+		private void listBoxAttributes_ItemChecked(object sender, ItemEventArgs args)
+		{
+		
+			if (listBoxTables.SelectedIndex == -1)
+			{
+				return;
+			}
+
+			var table = listBoxTables.SelectedItem as Table;
+
+			// ----------------------------------
+			// we can update the current attribute in the table
+			if (args != ItemEventArgs.Empty)
+			{
+				var attribute =
+					args.Item.ItemObject as Schema.Attribute;
+
+				var foundAttribute =
+					table.Attributes.FirstOrDefault(
+						a => object.ReferenceEquals(a, attribute));
+
+				foundAttribute.IsChecked = args.Item.IsChecked;
+				return;
+			}
+
+			// ----------------------------------
+			// update all attributes in the currently selected table
+			foreach (var item in listBoxAttributes.Items)
+			{
+				var currentAttribute =
+					item.ItemObject as Schema.Attribute;
+				
+				if (currentAttribute == null)
+				{
+					continue;
+				}
+
+				var foundAttribute =
+					table.Attributes.FirstOrDefault(
+						a => object.ReferenceEquals(a, currentAttribute));
+				
+				if (foundAttribute == null)
+				{
+					continue;
+				}
+
+				foundAttribute.IsChecked = item.IsChecked;
+			}
+		}
+
 		#endregion
 
 
@@ -750,11 +879,22 @@ namespace Com.AiricLenz.XTB.Plugin
 						return;
 					}
 
+					listBoxTables.Items.Clear();
+
 					foreach (var entityMetadata in result.EntityMetadata)
 					{
+						var newTable =
+							new Schema.Table
+							{
+								LogicalName = entityMetadata.LogicalName,
+								DisplayName = entityMetadata.DisplayName?.UserLocalizedLabel?.Label ?? entityMetadata.LogicalName,
+								IsSelected = false,
+								Attributes = new List<Schema.Attribute>()
+							};
+
 						var newItem =
 							new SortableCheckItem(
-								entityMetadata);
+								newTable);
 
 						listBoxTables.Items.Add(newItem);
 					}
@@ -768,6 +908,127 @@ namespace Com.AiricLenz.XTB.Plugin
 			});
 
 		}
+
+
+
+
+		// ================================================================================
+		public void UpdateMetadataForSelectedTable(
+			bool forceLoad = false)
+		{
+			var tableIndex = listBoxTables.SelectedIndex;
+
+			if (tableIndex < 0 ||
+				tableIndex >= listBoxTables.FilteredItems.Count)
+			{
+				return;
+			}
+
+			var table =
+				listBoxTables.FilteredItems[tableIndex].ItemObject as Table;
+
+			if (table == null)
+			{
+				return;
+			}
+
+			if (table.Attributes.Count > 0 &&
+				!forceLoad)
+			{
+				listBoxAttributes.Items.Clear();
+
+				foreach (var attribute in table.Attributes)
+				{
+					var newItem =
+						new SortableCheckItem(
+							attribute);
+
+					newItem.IsChecked = attribute.IsChecked;
+
+					listBoxAttributes.Items.Add(newItem);
+				}
+
+				listBoxAttributes.CheckAllItems();
+				listBoxAttributes.Refresh();
+
+				return;
+			}
+
+			WorkAsync(new WorkAsyncInfo
+			{
+				Message = "Loading Table Metadata...",
+				Work = (worker, args) =>
+				{
+					RetrieveEntityResponse result = null;
+
+					var request = new RetrieveEntityRequest
+					{
+						LogicalName = table.LogicalName,
+						EntityFilters = EntityFilters.Attributes,
+						RetrieveAsIfPublished = true
+					};
+					try
+					{
+						result = (RetrieveEntityResponse) Service.Execute(request);
+						args.Result = result?.EntityMetadata;
+					}
+					catch (Exception)
+					{
+						args.Result = null;
+					}
+				},
+				PostWorkCallBack = (args) =>
+				{
+					if (args == null ||
+						args.Error != null)
+					{
+						MessageBox.Show(
+							args.Error.ToString(),
+							"Error",
+							MessageBoxButtons.OK,
+							MessageBoxIcon.Error);
+
+						return;
+					}
+
+					var result = args.Result as EntityMetadata;
+
+					if (result == null)
+					{
+						return;
+					}
+
+					listBoxAttributes.Items.Clear();
+					((Table) listBoxTables.SelectedItem).Attributes.Clear();
+
+					foreach (var attribute in result.Attributes)
+					{
+						var newAttribute =
+							new Schema.Attribute
+							{
+								LogicalName = attribute.LogicalName,
+								DisplayName = attribute.DisplayName?.UserLocalizedLabel?.Label ?? attribute.LogicalName,
+								TypeName = attribute.AttributeType.ToString(),
+							};
+
+						((Table) listBoxTables.SelectedItem).Attributes.Add(newAttribute);
+
+						var newItem =
+							new SortableCheckItem(
+								newAttribute);
+
+						listBoxAttributes.Items.Add(newItem);
+					}
+
+					listBoxAttributes.CheckAllItems();
+					listBoxAttributes.Refresh();
+					listBoxTables.Refresh();
+				}
+			});
+
+		}
+
+
 
 
 		// ============================================================================
@@ -900,7 +1161,7 @@ namespace Com.AiricLenz.XTB.Plugin
 				new ColumnDefinition
 				{
 					Header = "Table Name",
-					PropertyName = "SchemaName",
+					PropertyName = "DisplayName",
 					TooltipText = "The human readable friendly-name of the table.",
 					Width = (_settings.ShowLogicalTableNames ? "50%" : "100%"),
 					Enabled = _settings.ShowFriendlyTableNames,
@@ -921,10 +1182,59 @@ namespace Com.AiricLenz.XTB.Plugin
 			var colFilter =
 				new ColumnDefinition
 				{
-					Header = "Has Filter",
-					PropertyName = "",
+					Header = "",
+					PropertyName = "FilterImage",
 					TooltipText = "Shows if a filter is present or not",
-					Width = "50",
+					Width = "40 px",
+					MarginLeft = 0,
+					Enabled = true,
+					IsSortable = true,
+				};
+
+			var colIsCreate =
+				new ColumnDefinition
+				{
+					Header = "",
+					PropertyName = "CreateImage",
+					TooltipText = "Shows if missing records are supposed to be created in the target environment",
+					Width = "20 px",
+					MarginLeft = 0,
+					Enabled = true,
+					IsSortable = true,
+				};
+
+			var colIsUpdate =
+				new ColumnDefinition
+				{
+					Header = "",
+					PropertyName = "UpdateImage",
+					TooltipText = "Shows if existing records are supposed to be updated in the target environment",
+					Width = "20 px",
+					MarginLeft = 0,
+					Enabled = true,
+					IsSortable = true,
+				};
+
+			var colIsDelete =
+				new ColumnDefinition
+				{
+					Header = "",
+					PropertyName = "DeleteImage",
+					TooltipText = "Shows if existing records that are missing in the source environment are supposed to be deleted in the target environment",
+					Width = "30 px",
+					MarginLeft = 0,
+					Enabled = true,
+					IsSortable = true,
+				};
+
+			var colMetadata =
+				new ColumnDefinition
+				{
+					Header = "",
+					PropertyName = "MetadataImage",
+					TooltipText = "Shows if the metadata for this table has been loaded",
+					Width = "20px",
+					MarginLeft = 2,
 					Enabled = true,
 					IsSortable = true,
 				};
@@ -935,9 +1245,13 @@ namespace Com.AiricLenz.XTB.Plugin
 			listBoxTables.Columns =
 				new List<ColumnDefinition>
 				{
-					colFriendlyName,		// 0
-					colLogicalName,			// 1
-					colFilter				// 2
+					colFriendlyName,
+					colLogicalName,	
+					colFilter,
+					colIsCreate,
+					colIsUpdate,
+					colIsDelete,
+					colMetadata,
 				};
 
 
@@ -945,6 +1259,44 @@ namespace Com.AiricLenz.XTB.Plugin
 			listBoxTables.SortingColumnOrder = _settings.SortingColumnOrder;
 
 			CodeUpdate = false;
+		}
+
+
+		// ============================================================================
+		private void UpdateCUDButtonStatuses()
+		{
+			if (listBoxTables.SelectedItem == null)
+			{
+				toolStripTables_buttonCreate.Enabled = false;
+				toolStripTables_buttonUpdate.Enabled = false;
+				toolStripTables_buttonDelete.Enabled = false;
+				toolStripTables_buttonCreate.Image = Properties.Resources.create_disabled_16px;
+				toolStripTables_buttonUpdate.Image = Properties.Resources.update_disabled_16px;
+				toolStripTables_buttonDelete.Image = Properties.Resources.delete_disabled_16px;
+
+				return;
+			}
+
+			var table = listBoxTables.SelectedItem as Table;
+
+			toolStripTables_buttonCreate.Enabled = true;
+			toolStripTables_buttonUpdate.Enabled = true;
+			toolStripTables_buttonDelete.Enabled = true;
+
+			toolStripTables_buttonCreate.Image =
+				table.IsCreate ?
+				Properties.Resources.create_enabled_16px :
+				Properties.Resources.create_disabled_16px;
+
+			toolStripTables_buttonUpdate.Image =
+				table.IsUpdate ?
+				Properties.Resources.update_enabled_16px :
+				Properties.Resources.update_disabled_16px;
+
+			toolStripTables_buttonDelete.Image =
+				table.IsDelete ?
+				Properties.Resources.delete_enabled_16px :
+				Properties.Resources.delete_disabled_16px;
 		}
 
 
@@ -993,72 +1345,7 @@ namespace Com.AiricLenz.XTB.Plugin
 		}
 
 
-		// ================================================================================
-		public void LoadEntityMetadata(
-			string entityLogicalName)
-		{
 
-			if (string.IsNullOrWhiteSpace(entityLogicalName))
-			{
-				return;
-			}
-
-			WorkAsync(new WorkAsyncInfo
-			{
-				Message = "Loading Table Metadata...",
-				Work = (worker, args) =>
-				{
-					var request = new RetrieveEntityRequest
-					{
-						LogicalName = entityLogicalName,
-						EntityFilters = EntityFilters.Attributes,
-						RetrieveAsIfPublished = true
-					};
-
-					var result = (RetrieveEntityResponse) Service.Execute(request);
-
-					args.Result = result?.EntityMetadata;
-				},
-				PostWorkCallBack = (args) =>
-				{
-					if (args.Error != null)
-					{
-						MessageBox.Show(
-							args.Error.ToString(),
-							"Error",
-							MessageBoxButtons.OK,
-							MessageBoxIcon.Error);
-
-						return;
-					}
-
-					var result = args.Result as EntityMetadata;
-
-					if (result == null)
-					{
-						return;
-					}
-
-					listBoxAttributes.Items.Clear();
-
-					foreach (var attribute in result.Attributes)
-					{
-						var newItem =
-							new SortableCheckItem(
-								attribute);
-
-						var a = attribute.DisplayName;
-
-						listBoxAttributes.Items.Add(newItem);
-					}
-
-					listBoxAttributes.Filter = null;
-					listBoxAttributes.CheckAllItems();
-					listBoxAttributes.Refresh();
-				}
-			});
-
-		}
 
 
 

@@ -333,9 +333,23 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="Resources\update.enabled.18px.png" />
+    <None Include="Resources\update.disabled.18px.png" />
+    <None Include="Resources\update.enabled.16px.png" />
+    <None Include="Resources\update.disabled.16px.png" />
     <None Include="Resources\filter.16px.png" />
     <None Include="Resources\invert check.16px.png" />
     <None Include="Resources\checked.16px.png" />
+    <None Include="Resources\isFiltered.png" />
+    <None Include="Resources\metadata.18px.png" />
+    <None Include="Resources\create.enabled.16px.png" />
+    <None Include="Resources\create.disabled.16px.png" />
+    <None Include="Resources\delete.disabled.16px.png" />
+    <None Include="Resources\delete.enabled.16px.png" />
+    <None Include="Resources\delete.enabled.18px.png" />
+    <None Include="Resources\delete.disabled.18px.png" />
+    <None Include="Resources\create.enabled.18px.png" />
+    <None Include="Resources\create.disabled.18px.png" />
     <Content Include="Resources\show all.16px.png" />
     <Content Include="Resources\show selected.16px.png" />
     <None Include="Resources\unchecked.16px.png" />
