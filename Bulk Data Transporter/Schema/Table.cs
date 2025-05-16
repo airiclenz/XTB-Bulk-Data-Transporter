@@ -47,7 +47,7 @@ namespace Com.AiricLenz.XTB.Plugin.Schema
 			} 
 		}
 		// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-		public bool IsSelected { get; set; } = false;
+		public bool IsChecked { get; set; } = false;
 		// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 		public List<Attribute> Attributes { get; set; } = new List<Attribute>();
 
