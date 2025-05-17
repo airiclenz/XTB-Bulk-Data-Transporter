@@ -14,11 +14,18 @@ namespace Com.AiricLenz.XTB.Plugin.Schema
 	// ============================================================================
 	internal class Attribute
 	{
+		[JsonProperty]
 		public string LogicalName { get; set; } = string.Empty;
+		[JsonProperty]
 		public string DisplayName { get; set; } = string.Empty;
+		[JsonProperty]
 		public string TypeName { get; set; } = string.Empty;
-		public Bitmap TypeImage { get; } = null;
+		[JsonProperty]
 		public bool IsChecked { get; set; } = false;
+
+
+		[JsonIgnore]
+		public Bitmap TypeImage { get; set; } = null;
 
 	}
 }

@@ -28,51 +28,34 @@ namespace Com.AiricLenz.XTB.Plugin.Schema
 
 
 		// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+		[JsonProperty]
 		public string LogicalName { get; set; } = string.Empty;
 		// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+		[JsonProperty]
 		public string DisplayName { get; set; } = string.Empty;
 		// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-		public string FetchXmlFilter { get; set; } = string.Empty;
+		[JsonProperty]
+		public TableFilter Filter { get; set; } = null;
 		// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-		public Bitmap FilterImage 
-		{ 
-			get
-			{
-				if (string.IsNullOrEmpty(FetchXmlFilter))
-				{
-					return null;
-				}
-
-				return _filterImgeToBeUsed;
-			} 
-		}
-		// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+		[JsonProperty]
 		public bool IsSelected { get; set; } = false;
 		// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+		[JsonProperty]
 		public List<Attribute> Attributes { get; set; } = new List<Attribute>();
-
 		// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-		public Bitmap MetadataImage
-		{
-			get
-			{
-				if (Attributes == null ||
-					Attributes.Count == 0)
-				{
-					return null;
-				}
-
-				return _metadataImageToBeUsed;
-			}
-		}
-
-		// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+		[JsonProperty]
 		public bool IsCreate { get; set; } = false;
 		// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+		[JsonProperty]
 		public bool IsUpdate { get; set; } = false;
 		// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+		[JsonProperty]
 		public bool IsDelete { get; set; } = false;
+
+
+
 		// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+		[JsonIgnore]
 		public Bitmap CreateImage
 		{
 			get
@@ -86,6 +69,7 @@ namespace Com.AiricLenz.XTB.Plugin.Schema
 			}
 		}
 		// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+		[JsonIgnore]
 		public Bitmap UpdateImage
 		{
 			get
@@ -99,6 +83,7 @@ namespace Com.AiricLenz.XTB.Plugin.Schema
 			}
 		}
 		// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+		[JsonIgnore]
 		public Bitmap DeleteImage
 		{
 			get
@@ -111,7 +96,35 @@ namespace Com.AiricLenz.XTB.Plugin.Schema
 				return _deleteImageDisabled;
 			}
 		}
+		// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+		[JsonIgnore]
+		public Bitmap FilterImage
+		{
+			get
+			{
+				if (Filter == null)
+				{
+					return null;
+				}
 
+				return _filterImgeToBeUsed;
+			}
+		}
+		// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+		[JsonIgnore]
+		public Bitmap MetadataImage
+		{
+			get
+			{
+				if (Attributes == null ||
+					Attributes.Count == 0)
+				{
+					return null;
+				}
+
+				return _metadataImageToBeUsed;
+			}
+		}
 
 
 
