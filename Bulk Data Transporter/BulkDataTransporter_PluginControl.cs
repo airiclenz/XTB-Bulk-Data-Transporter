@@ -18,6 +18,7 @@ using Microsoft.Xrm.Tooling.Connector;
 using XrmToolBox.Extensibility;
 using Schema = Com.AiricLenz.XTB.Plugin.Schema;
 
+
 // ============================================================================
 // ============================================================================
 namespace Com.AiricLenz.XTB.Plugin
@@ -279,8 +280,6 @@ namespace Com.AiricLenz.XTB.Plugin
 					}
 				}
 
-				LoadTables();
-
 				button_loadMetadata.Enabled = Service != null;
 			}
 
@@ -293,9 +292,6 @@ namespace Com.AiricLenz.XTB.Plugin
 			NotifyCollectionChangedEventArgs e)
 		{
 			button_manageConnections.Visible = TargetConnections?.Count > 0;
-
-
-			LoadTables();
 
 			_connectionManager?.UpdateConnections();
 
@@ -758,52 +754,20 @@ namespace Com.AiricLenz.XTB.Plugin
 		// ================================================================================
 		private void listBoxAttributes_ItemChecked(object sender, ItemEventArgs args)
 		{
-		
+			
 			if (listBoxTables.SelectedIndex == -1)
 			{
 				return;
 			}
 
-			var table = listBoxTables.SelectedItem as Table;
+			// Extract all attributes from listBoxAttributes.Items
+			var attributes = listBoxAttributes.Items
+				.Select(item => item.ItemObject as Schema.Attribute)
+				.Where(attr => attr != null)
+				.ToList();
 
-			// ----------------------------------
-			// we can update the current attribute in the table
-			if (args != ItemEventArgs.Empty)
-			{
-				var attribute =
-					args.Item.ItemObject as Schema.Attribute;
-
-				var foundAttribute =
-					table.Attributes.FirstOrDefault(
-						a => object.ReferenceEquals(a, attribute));
-
-				foundAttribute.IsChecked = args.Item.IsChecked;
-				return;
-			}
-
-			// ----------------------------------
-			// update all attributes in the currently selected table
-			foreach (var item in listBoxAttributes.Items)
-			{
-				var currentAttribute =
-					item.ItemObject as Schema.Attribute;
-				
-				if (currentAttribute == null)
-				{
-					continue;
-				}
-
-				var foundAttribute =
-					table.Attributes.FirstOrDefault(
-						a => object.ReferenceEquals(a, currentAttribute));
-				
-				if (foundAttribute == null)
-				{
-					continue;
-				}
-
-				foundAttribute.IsChecked = item.IsChecked;
-			}
+			// ..ans sync them back to the tables properties (right side)
+			((Table)listBoxTables.SelectedItem).Attributes = attributes;
 		}
 
 		#endregion
@@ -888,13 +852,14 @@ namespace Com.AiricLenz.XTB.Plugin
 							{
 								LogicalName = entityMetadata.LogicalName,
 								DisplayName = entityMetadata.DisplayName?.UserLocalizedLabel?.Label ?? entityMetadata.LogicalName,
-								IsSelected = false,
+								IsChecked = false,
 								Attributes = new List<Schema.Attribute>()
 							};
 
 						var newItem =
 							new SortableCheckItem(
-								newTable);
+								newTable,
+								"IsChecked");
 
 						listBoxTables.Items.Add(newItem);
 					}
@@ -919,13 +884,13 @@ namespace Com.AiricLenz.XTB.Plugin
 			var tableIndex = listBoxTables.SelectedIndex;
 
 			if (tableIndex < 0 ||
-				tableIndex >= listBoxTables.FilteredItems.Count)
+				tableIndex >= listBoxTables.Items.Count)
 			{
 				return;
 			}
 
 			var table =
-				listBoxTables.FilteredItems[tableIndex].ItemObject as Table;
+				listBoxTables.Items[tableIndex].ItemObject as Table;
 
 			if (table == null)
 			{
@@ -941,7 +906,8 @@ namespace Com.AiricLenz.XTB.Plugin
 				{
 					var newItem =
 						new SortableCheckItem(
-							attribute);
+							attribute,
+							"IsChecked");
 
 					newItem.IsChecked = attribute.IsChecked;
 
@@ -1015,7 +981,8 @@ namespace Com.AiricLenz.XTB.Plugin
 
 						var newItem =
 							new SortableCheckItem(
-								newAttribute);
+								newAttribute,
+								"IsChecked");
 
 						listBoxAttributes.Items.Add(newItem);
 					}
