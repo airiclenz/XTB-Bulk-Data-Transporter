@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Com.AiricLenz.XTB.Plugin
 {
-	partial class ConnectionManager
+	partial class ConnectionManagerForm
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -31,7 +31,7 @@ namespace Com.AiricLenz.XTB.Plugin
 		/// </summary>
 		private void InitializeComponent()
 		{
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConnectionManager));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConnectionManagerForm));
             this.button_ok = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.button_addConnection = new System.Windows.Forms.ToolStripButton();

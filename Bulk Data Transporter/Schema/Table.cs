@@ -4,7 +4,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Com.AiricLenz.XTB.Components.Filter.Schema;
+using Newtonsoft.Json;
 
 // ============================================================================
 // ============================================================================
@@ -38,10 +39,10 @@ namespace Com.AiricLenz.XTB.Plugin.Schema
 		public TableFilter Filter { get; set; } = null;
 		// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 		[JsonProperty]
-		public bool IsSelected { get; set; } = false;
+		public bool IsChecked { get; set; } = false;
 		// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 		[JsonProperty]
-		public List<Attribute> Attributes { get; set; } = new List<Attribute>();
+		public List<TableAttribute> Attributes { get; set; } = new List<TableAttribute>();
 		// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 		[JsonProperty]
 		public bool IsCreate { get; set; } = false;

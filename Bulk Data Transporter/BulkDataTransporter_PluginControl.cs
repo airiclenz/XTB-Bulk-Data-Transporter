@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.Remoting.Messaging;
 using System.Windows.Forms;
 using Com.AiricLenz.XTB.Components;
+using Com.AiricLenz.XTB.Components.Filter.Schema;
 using Com.AiricLenz.XTB.Plugin.Helpers;
 using Com.AiricLenz.XTB.Plugin.Schema;
 using McTools.Xrm.Connection;
@@ -40,7 +41,7 @@ namespace Com.AiricLenz.XTB.Plugin
 		private bool _codeUpdate = false;
 		private bool _codeUpdateSplitter = false;
 		
-		private ConnectionManager _connectionManager = null;
+		private ConnectionManagerForm _connectionManager = null;
 		private Logger _logger = null;
 		private bool _isSearchTablesEmpty = true;
 		private bool _isSearchAttributesEmpty = true;
@@ -391,7 +392,7 @@ namespace Com.AiricLenz.XTB.Plugin
 		// ============================================================================
 		private void button_manageConnections_Click(object sender, EventArgs e)
 		{
-			_connectionManager = new ConnectionManager(this);
+			_connectionManager = new ConnectionManagerForm(this);
 			var dialogResult = _connectionManager.ShowDialog();
 			_connectionManager = null;
 		}
@@ -699,7 +700,14 @@ namespace Com.AiricLenz.XTB.Plugin
 			}
 
 			var table = listBoxTables.SelectedItem as Table;
-			table.FetchXmlFilter = "<fetchXml />";
+
+			var filterEditor = new FilterEditorForm()
+			{
+				Filter = table.Filter,
+				Attributes = table.Attributes
+			};
+
+			var resut = filterEditor.ShowDialog();
 
 			listBoxTables.Refresh();
 		}
@@ -762,7 +770,7 @@ namespace Com.AiricLenz.XTB.Plugin
 
 			// Extract all attributes from listBoxAttributes.Items
 			var attributes = listBoxAttributes.Items
-				.Select(item => item.ItemObject as Schema.Attribute)
+				.Select(item => item.ItemObject as TableAttribute)
 				.Where(attr => attr != null)
 				.ToList();
 
@@ -853,7 +861,7 @@ namespace Com.AiricLenz.XTB.Plugin
 								LogicalName = entityMetadata.LogicalName,
 								DisplayName = entityMetadata.DisplayName?.UserLocalizedLabel?.Label ?? entityMetadata.LogicalName,
 								IsChecked = false,
-								Attributes = new List<Schema.Attribute>()
+								Attributes = new List<TableAttribute>()
 							};
 
 						var newItem =
@@ -970,7 +978,7 @@ namespace Com.AiricLenz.XTB.Plugin
 					foreach (var attribute in result.Attributes)
 					{
 						var newAttribute =
-							new Schema.Attribute
+							new TableAttribute
 							{
 								LogicalName = attribute.LogicalName,
 								DisplayName = attribute.DisplayName?.UserLocalizedLabel?.Label ?? attribute.LogicalName,

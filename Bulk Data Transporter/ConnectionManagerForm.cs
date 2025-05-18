@@ -20,7 +20,7 @@ namespace Com.AiricLenz.XTB.Plugin
 	// ============================================================================
 	// ============================================================================
 	// ============================================================================
-	public partial class ConnectionManager : Form
+	public partial class ConnectionManagerForm : Form
 	{
 
 		private BulkDataTransporter_PluginControl _parentControl;
@@ -28,7 +28,7 @@ namespace Com.AiricLenz.XTB.Plugin
 
 
 		// ============================================================================
-		public ConnectionManager(
+		public ConnectionManagerForm(
 			BulkDataTransporter_PluginControl parentControl)
 		{
 			InitializeComponent();
