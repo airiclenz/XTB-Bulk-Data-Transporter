@@ -23,16 +23,16 @@ namespace Com.AiricLenz.XTB.Plugin
 		// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 		public TableFilter Filter
 		{
-			get => _filterEditor.Filter;
-			set => _filterEditor.Filter = value;
+			get => filterEditorControl1.Filter;
+			set => filterEditorControl1.Filter = value;
 		}
 
 
 		// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 		public List<TableAttribute> Attributes
 		{
-			get => _filterEditor.Attributes;
-			set => _filterEditor.Attributes = value;
+			get => filterEditorControl1.Attributes;
+			set => filterEditorControl1.Attributes = value;
 		}
 
 

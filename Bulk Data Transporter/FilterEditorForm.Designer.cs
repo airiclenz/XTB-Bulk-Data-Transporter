@@ -28,26 +28,30 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this._filterEditor = new Com.AiricLenz.XTB.Components.FilterEditorControl();
+            this.filterEditorControl1 = new Com.AiricLenz.XTB.Components.FilterEditorControl();
             this.SuspendLayout();
             // 
-            // filterEditor1
+            // filterEditorControl1
             // 
-            this._filterEditor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.filterEditorControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this._filterEditor.Location = new System.Drawing.Point(12, 32);
-            this._filterEditor.Name = "filterEditor1";
-            this._filterEditor.Size = new System.Drawing.Size(750, 393);
-            this._filterEditor.TabIndex = 0;
-            this._filterEditor.FilterChanged += new System.EventHandler(this.filterEditor1_FilterChanged);
+            this.filterEditorControl1.AutoScroll = true;
+            this.filterEditorControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.filterEditorControl1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.filterEditorControl1.Location = new System.Drawing.Point(14, 14);
+            this.filterEditorControl1.Margin = new System.Windows.Forms.Padding(5);
+            this.filterEditorControl1.Name = "filterEditorControl1";
+            this.filterEditorControl1.Padding = new System.Windows.Forms.Padding(5);
+            this.filterEditorControl1.Size = new System.Drawing.Size(772, 422);
+            this.filterEditorControl1.TabIndex = 0;
             // 
             // FilterEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this._filterEditor);
+            this.Controls.Add(this.filterEditorControl1);
             this.Name = "FilterEditorForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Form1";
@@ -57,7 +61,6 @@
 
 		#endregion
 
-		private Components.FilterEditorControl _filterEditor;
-
+		private Components.FilterEditorControl filterEditorControl1;
 	}
 }

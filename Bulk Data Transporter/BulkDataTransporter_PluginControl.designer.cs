@@ -207,7 +207,7 @@ namespace Com.AiricLenz.XTB.Plugin
             this.toolStripAttributes_buttonUncheck});
             this.toolStrip_Attributes.Location = new System.Drawing.Point(10, 0);
             this.toolStrip_Attributes.Name = "toolStrip_Attributes";
-            this.toolStrip_Attributes.Size = new System.Drawing.Size(829, 25);
+            this.toolStrip_Attributes.Size = new System.Drawing.Size(828, 25);
             this.toolStrip_Attributes.TabIndex = 9;
             this.toolStrip_Attributes.Text = "Clear filter";
             this.toolTip1.SetToolTip(this.toolStrip_Attributes, "Clear filter");
@@ -335,7 +335,7 @@ namespace Com.AiricLenz.XTB.Plugin
             this.splitContainer1.Panel2MinSize = 400;
             this.splitContainer1.Size = new System.Drawing.Size(1486, 726);
             this.splitContainer1.SplitterDistance = 646;
-            this.splitContainer1.SplitterWidth = 1;
+            this.splitContainer1.SplitterWidth = 2;
             this.splitContainer1.TabIndex = 7;
             // 
             // splitter1
@@ -568,12 +568,12 @@ namespace Com.AiricLenz.XTB.Plugin
             this.listBoxAttributes.ShowOnlyCheckedItems = false;
             this.listBoxAttributes.ShowScrollBar = true;
             this.listBoxAttributes.ShowTooltips = true;
-            this.listBoxAttributes.Size = new System.Drawing.Size(828, 698);
+            this.listBoxAttributes.Size = new System.Drawing.Size(830, 698);
             this.listBoxAttributes.SortingColumnIndex = 1;
             this.listBoxAttributes.SortingColumnOrder = System.Windows.Forms.SortOrder.Ascending;
             this.listBoxAttributes.TabIndex = 8;
             this.listBoxAttributes.Text = "sortableCheckList1";
-            this.listBoxAttributes.ItemChecked += new System.EventHandler<ItemEventArgs>(this.listBoxAttributes_ItemChecked);
+            this.listBoxAttributes.ItemChecked += new System.EventHandler<Com.AiricLenz.XTB.Components.ItemEventArgs>(this.listBoxAttributes_ItemChecked);
             // 
             // tabPage_Log
             // 
